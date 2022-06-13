@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:53:49 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 15:53:50 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:35:36 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,3 @@ char	*ft_strnstr(const char *hay, const char *ndl, size_t size)
 	}
 	return (NULL);
 }
-/*
-int	main(int argc, char *argv[])
-{
-	char	haystack[] = "Come and get me ! I dare you !\n";
-	char	*ret;
-
-	if (argc > 1)
-	{
-		ft_putstr("Haystack :");
-		ft_putstr(haystack);
-		ft_putstr("\n");
-		ret = ft_strnstr(haystack, argv[1], ft_atoi(argv[2]));
-		if (ret)
-			ft_putstr(ret);
-		else
-			ft_putstr("ret is NULL\n");
-	}
-	return (0);
-}
-*/

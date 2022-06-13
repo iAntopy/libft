@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:51:36 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 16:05:48 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/06/12 23:59:14 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,17 @@ static void	rec_putnbr(long long int n, int fd)
 void	ft_putnbr_fd(int nbr, int fd)
 {
 	long long int	n;
-	int				is_neg;
 
 	n = (long long int)nbr;
-	is_neg = n < 0;
-	write(fd, "-", is_neg);
-	n *= 1 - (2 * is_neg);
-	rec_putnbr(n, fd);
+	write(fd, "-", n < 0);
+	rec_putnbr(n * (1 - (2 * (n < 0))), fd);
 }
 
-/*
-#include <fcntl.h>
-#include <string.h>
-#include <errno.h>
-int	main(int argc, char *argv[])
+void	ft_putnbr(int nbr)
 {
-	int	nbr;
-	int	fd;
+	long long int	n;
 
-	if (argc > 1)
-	{
-		nbr = atoi(argv[1]);
-		fd = open("nbrfd.txt", O_CREAT | O_RDWR| O_APPEND, 0777);
-		ft_putstr("fd : ");
-		ft_putnbr(fd);
-		if (fd != -1)
-		{
-			ft_putnbr_fd(nbr, fd);
-			close(fd);
-		}
-		else
-		{
-			ft_putstr("On a un probleme.\n");
-			ft_putstr(strerror(errno));
-		}
-	}
-	return (0);
+	n = (long long int)nbr;
+	write(1, "-", n < 0);
+	rec_putnbr(n * (1 - (2 * (n < 0))), 1);
 }
-*/

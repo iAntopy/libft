@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 15:43:25 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 15:43:27 by iamongeo         ###   ########.fr       */
+/*   Created: 2022/06/07 17:39:53 by iamongeo          #+#    #+#             */
+/*   Updated: 2022/06/07 17:40:16 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_issign(int c)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:54:31 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/30 13:59:09 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/04/14 16:38:21 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	*return_empty_str(void)
 	char	*ptr;
 
 	ptr = (char *)malloc(sizeof(char));
+	if (!ptr)
+		return (NULL);
 	ptr[0] = '\0';
 	return (ptr);
 }
@@ -27,8 +29,10 @@ char	*ft_substr(char const *str, unsigned int start, size_t n)
 	char	*d;
 	size_t	str_len;
 
+	if (!str)
+		return (NULL);
 	str_len = ft_strlen(str);
-	if (start > str_len)
+	if ((start > str_len) || (n == 0))
 		return (return_empty_str());
 	str_len -= start;
 	str += start;
@@ -43,24 +47,3 @@ char	*ft_substr(char const *str, unsigned int start, size_t n)
 	*d = '\0';
 	return (dup);
 }
-/*
-int	main(void)
-{
-//	char	buff[] = "ca c'est vraiment incroyable.";
-	char	buff[] = "lorem ipsum dolor sit amet";
-	char	*sub;
-	
-	sub = ft_substr(buff, 400, 20);
-
-	ft_putstr("Init buff : ");
-	ft_putstr(buff);
-	if (sub)
-	{
-		ft_putstr("\nsubstr : ");
-		ft_putstr(sub);
-	}
-	else
-		ft_putstr("\nsubstr is NULL");
-	return (0);
-}
-*/

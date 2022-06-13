@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:52:47 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 15:52:49 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:44:50 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,3 @@ char	*ft_strdup(const char *str)
 	dup[str_len] = '\0';
 	return (dup);
 }
-/*
-int	main(void)
-{
-	char	*dup;
-	char	src[] = "Kawaboonga !";
-
-	dup = ft_strdup(src);
-	ft_putstr(dup);
-	return (0);
-}
-*/

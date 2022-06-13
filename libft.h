@@ -6,15 +6,40 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/30 14:12:47 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/06/12 23:35:34 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define BLACK_C	"\033[0;30m"
+# define RED_C		"\033[0;31m"
+# define GREEN_C	"\033[0;32m"
+# define YELLOW_C	"\033[0;33m"
+# define BLUE_C		"\033[0;34m"
+# define PURPLE_C	"\033[0;35m"
+# define CYAN_C		"\033[0;36m"
+# define WHITE_C	"\033[0;37m"
+
+# define BLACK_BC	"\033[1;30m"
+# define RED_BC		"\033[1;31m"
+# define GREEN_BC	"\033[1;32m"
+# define YELLOW_BC	"\033[1;33m"
+# define BLUE_BC	"\033[1;34m"
+# define PURPLE_BC	"\033[1;35m"
+# define CYAN_BC	"\033[1;36m"
+# define WHITE_BC	"\033[1;37m"
+
+//# define HEX_BASE_LOWERCASE "0123456789abcdef"
+//# define HEX_BASE_UPPERCASE "0123456789ABCDEF"
+// homemade limits
+
+# include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
+# include <stdio.h>
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
@@ -34,7 +59,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 char	*ft_strstr(const char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_atoi(const char *nptr);
+int		ft_atoi(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 
 int		ft_isalnum(int c);
@@ -63,9 +88,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
+char	**ft_split_set(char const *s, char *set);
+char	**ft_split_space(char const *s);
 char	*ft_itoa(int n);
 
-void	ft_putchar(char c);
+void	ft_putchar(int c);
 void	ft_putstr(char const *s);
 void	ft_putendl(char const *s);
 void	ft_putnbr(int n);
@@ -73,6 +100,15 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+int		ft_printf(const char *fmt, ...);
+int		ft_vprintf(const char *fmt, va_list *ap);
+void	fperror(char *fmt, ...);
+
+int		malloc_free_p(size_t size, void **ptr);
+void	*malloc_free(size_t size, void **ptr);
+
+char	*get_next_line(int fd);
 
 typedef struct s_list
 {

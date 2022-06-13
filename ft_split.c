@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:55:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 16:03:17 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:43:15 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char	**ft_split(char const *s, char c)
 	char	**tab;
 	int		wcount;
 
+	if (!s)
+		return (NULL);
 	wcount = word_counter(s, c);
 	tab = malloc(sizeof(char *) * (wcount + 1));
 	if (!tab)
@@ -64,25 +66,3 @@ char	**ft_split(char const *s, char c)
 	tab[wcount] = NULL;
 	return (tab);
 }
-/*
-void	print_tab(char **tab)
-{
-	while (*tab)
-	{
-		ft_putstr(*(tab++));
-		ft_putstr("\n");
-	}
-}
-
-int	main(int argc, char *argv[])
-{
-	char	**tab;
-
-	if (argc > 2)
-	{
-		tab = ft_split(argv[1], argv[2][0]);
-		print_tab(tab);
-	}
-	return (0);
-}
-*/

@@ -6,40 +6,31 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:39:24 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 16:01:43 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/06/07 17:40:27 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	issign(char c)
+int	ft_atoi(const char *str)
 {
-	return (c == '+' || c == '-');
-}
-
-static int	isspace(char c)
-{
-	return (c == ' ' || (9 <= c && c <= 13));
-}	
-
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	nb;
-	int	sign;
+	unsigned long long int	nb;
+	int						sign;
 
 	nb = 0;
 	sign = 1;
-	i = 0;
-	while (nptr[i] && isspace(nptr[i]))
-		i++;
-	if (nptr[i] && issign(nptr[i]))
+	while (*str && ft_isspace(*str))
+		str++;
+	if (*str && ft_issign(*str))
 	{
-		if (!ft_isdigit(nptr[i + 1]))
+		if (!ft_isdigit(*(str + 1)))
 			return (0);
-		sign = 1 - (2 * (nptr[i++] == '-'));
+		sign -= 2 * (*str == '-');
+		str++;
 	}
-	while (nptr[i] && ft_isdigit(nptr[i]))
-		nb = (nb * 10) + (nptr[i++] - '0');
+	while (*str && ft_isdigit(*str) && (nb < LLONG_MAX))
+		nb = (nb * 10) + (*(str++) - '0');
+	if (nb > LLONG_MAX)
+		return (-1 + (sign == -1));
 	return (sign * nb);
 }

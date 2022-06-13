@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:50:29 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 15:59:11 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/04/01 19:35:18 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	ft_bwrd_cpy(unsigned char *dest, unsigned char *src, size_t n)
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
+	if (!dest && !src)
+		return (NULL);
 	if ((src < dest) && (dest < (src + n)))
 		ft_bwrd_cpy((unsigned char *)dest, (unsigned char *)src, n);
 	else
