@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/12 23:35:34 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:18:08 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,12 +100,20 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+void	ft_putbin(const void *addr, size_t n);
 
-int		ft_printf(const char *fmt, ...);
-int		ft_vprintf(const char *fmt, va_list *ap);
+void	ft_swap_i(int *a, int *b);
+void	ft_swap_f(float *a, float *b);
+int	ft_clamp(int n, int min, int max);
+
+int	ft_printf(const char *fmt, ...);
+int	ft_vprintf(const char *fmt, va_list *ap);
 void	fperror(char *fmt, ...);
+ssize_t	ft_deltatime_usec(char *note);
+float	ft_random(void);
+int	ft_randint(int min, int range);
 
-int		malloc_free_p(size_t size, void **ptr);
+int	malloc_free_p(size_t size, void **ptr);
 void	*malloc_free(size_t size, void **ptr);
 
 char	*get_next_line(int fd);
@@ -120,7 +128,8 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstcreate(void *content, size_t size_of);
 void	ft_lstinsert(t_list **lst, unsigned int index, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+int	ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	*ft_lstpop(t_list **lst, unsigned int index);

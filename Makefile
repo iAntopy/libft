@@ -1,8 +1,8 @@
 FUNC_NAMES_M = issign isspace isalpha isdigit isalnum isascii isprint strlen memset bzero memcpy memmove strlcpy strlcat toupper tolower strchr strrchr strncmp memchr memcmp strnstr atoi calloc strlcat substr strjoin strtrim split split_set split_space itoa strmapi striteri putchar_fd putstr_fd putendl_fd putnbr_fd strdup
 
-FUNC_NAMES_B = lstnew lstadd_front lstadd_back lstsize lstlast lstdelone lstclear lstiter lstmap
+FUNC_NAMES_B = lstnew lstcreate lstinsert lstadd_front lstadd_back lstsize lstlast lstdelone lstclear lstiter lstmap lstpop lstmap lstprint
 
-FUNC_NAMES_EXTRA = ft_printf ft_vprintf fperror malloc_free get_next_line
+FUNC_NAMES_EXTRA = ft_printf ft_vprintf ft_random ft_clamp ft_ fperror malloc_free get_next_line ft_deltatime_usec
 
 PREF		= ft_
 SUF_M		= .c

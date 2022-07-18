@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_average_bonus.c                             :+:      :+:    :+:   */
+/*   fperror.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 15:45:56 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/03/28 15:45:57 by iamongeo         ###   ########.fr       */
+/*   Created: 2022/06/07 15:30:32 by iamongeo          #+#    #+#             */
+/*   Updated: 2022/06/12 23:08:42 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdarg.h>
+#include <errno.h>
+#include <stdio.h>
+#include "ft_printf.h"
 
-int	ft_lst_average(t_list *lst)
+void	*fperror(char *fmt, ...)
 {
-	int	size;
-	int	total;
+	va_list	ap;
 
-	size = 0;
-	total = 0;
-	while (lst)
-	{
-		total += *(int *)(lst->content);
-		size++;
-		lst = lst->next
-	}
-	return (total / size);
+	va_start(ap, fmt);
+	ft_vprintf(fmt, &ap);
+	perror(" ");
+	va_end(ap);
+	return (NULL);
 }
