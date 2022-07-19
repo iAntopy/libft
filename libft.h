@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/18 18:18:08 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/18 19:21:07 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdio.h>
+
+# include "ft_printf.h"
+# include "get_next_line.h"
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
