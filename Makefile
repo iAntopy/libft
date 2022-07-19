@@ -2,7 +2,8 @@ FUNC_NAMES_M = issign isspace isalpha isdigit isalnum isascii isprint strlen mem
 
 FUNC_NAMES_B = lstnew lstcreate lstinsert lstadd_front lstadd_back lstsize lstlast lstdelone lstclear lstiter lstmap lstpop lstmap lstprint
 
-FUNC_NAMES_EXTRA = ft_printf ft_vprintf ft_random ft_clamp ft_ fperror malloc_free get_next_line ft_deltatime_usec
+# ft_randint not included because is in same file as ft_random
+FUNC_NAMES_EXTRA = ft_printf ft_vprintf ft_random ft_clamp fperror malloc_free get_next_line ft_deltatime_usec ft_memclear
 
 PREF		= ft_
 SUF_M		= .c

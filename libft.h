@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/18 19:21:07 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:49:11 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@
 # define CYAN_BC	"\033[1;36m"
 # define WHITE_BC	"\033[1;37m"
 
-//# define HEX_BASE_LOWERCASE "0123456789abcdef"
-//# define HEX_BASE_UPPERCASE "0123456789ABCDEF"
-// homemade limits
+# ifndef SIZE_MAX
+#  define SIZE_MAX 0xffffffffffffffff
+# endif
+
+# define X_BASE "0123456789abcdef"
+# define XX_BASE "0123456789ABCDEF"
+# define DEC_BASE "0123456789"
+
 
 # include <limits.h>
 # include <unistd.h>
@@ -41,8 +46,6 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-# include "ft_printf.h"
-# include "get_next_line.h"
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
@@ -107,20 +110,54 @@ void	ft_putbin(const void *addr, size_t n);
 
 void	ft_swap_i(int *a, int *b);
 void	ft_swap_f(float *a, float *b);
-int	ft_clamp(int n, int min, int max);
+int		ft_clamp(int n, int min, int max);
 
-int	ft_printf(const char *fmt, ...);
-int	ft_vprintf(const char *fmt, va_list *ap);
 void	fperror(char *fmt, ...);
 ssize_t	ft_deltatime_usec(char *note);
 float	ft_random(void);
-int	ft_randint(int min, int range);
+int		ft_randint(int min, int range);
 
 int	malloc_free_p(size_t size, void **ptr);
 void	*malloc_free(size_t size, void **ptr);
 
-char	*get_next_line(int fd);
 
+/////// GET_NEXT_LINE ////////
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
+
+typedef struct s_gdl
+{
+	struct s_gdl	*prev;
+	struct s_gdl	*next;
+	char			*str;
+	size_t			n;
+}	t_gdl;
+
+enum	e_fail_codes
+{
+	E_EOF = SIZE_MAX - 2,
+	E_MLC = SIZE_MAX - 1,
+	E_IFD = SIZE_MAX
+};
+
+char	*get_next_line(int fd);
+int		get_substr(char *str, size_t start, size_t n, char **ret);
+int		gdl_insert(t_gdl **dlst, t_gdl **elem, char *str, size_t push_app);
+int		join_clear_list(char *line, t_gdl **elem);
+char	*gather_line(t_gdl **chks);
+////////////////////////////////
+
+
+
+////////// FT_PRINTF ///////////
+int	ft_printf(const char *fmt, ...);
+int	ft_vprintf(const char *fmt, va_list *ap);
+/////////////////////////////////
+
+
+
+/////// SINGLE LINKED LIST FUNCTIONS ////////
 typedef struct s_list
 {
 	void			*content;
@@ -143,5 +180,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstprint_int(t_list *lst);
 void	ft_lstprint_str(t_list *lst);
 void	ft_lstprint_float(t_list *lst);
+///////////////////////////////////////////
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:15:10 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/12 23:29:53 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:48:57 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -43,9 +43,9 @@ int	get_substr(char *str, size_t start, size_t n, char **ret)
 // (psh_app >= 1) or appended after dlst (SIZE_MAX). (0) only creates 
 // new initialized element at *elem pointer. When text chunks are
 // inserted in the list the psh_app value will represent the chunk len.
-int	dlst_insert(t_dlst **dlst, t_dlst **elem, char *str, size_t psh_app)
+int	gdl_insert(t_gdl **dlst, t_gdl **elem, char *str, size_t psh_app)
 {
-	if (!malloc_free_p(sizeof(t_dlst), (void **)elem))
+	if (!malloc_free_p(sizeof(t_gdl), (void **)elem))
 		return (0);
 	(*elem)->prev = NULL;
 	(*elem)->next = NULL;
@@ -70,7 +70,7 @@ int	dlst_insert(t_dlst **dlst, t_dlst **elem, char *str, size_t psh_app)
 	return (1);
 }
 
-int	join_clear_list(char *line, t_dlst **elem)
+int	join_clear_list(char *line, t_gdl **elem)
 {
 	char	*s;
 
@@ -94,10 +94,10 @@ int	join_clear_list(char *line, t_dlst **elem)
 	return (1);
 }
 
-char	*gather_line(t_dlst **chks)
+char	*gather_line(t_gdl **chks)
 {
 	size_t	total_len;
-	t_dlst	*elem;
+	t_gdl	*elem;
 	char	*line;
 
 	elem = *chks;

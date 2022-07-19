@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:14:12 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/12 23:31:30 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:32:09 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -26,7 +26,7 @@ static size_t	scan_for_nl(char *buff, size_t n, size_t *idx)
 	return (0);
 }
 
-static char	*manage_eof(t_dlst **rems, t_dlst **fd_e, t_dlst **chks, size_t clr)
+static char	*manage_eof(t_gdl **rems, t_gdl **fd_e, t_gdl **chks, size_t clr)
 {
 	char	*line;
 
@@ -53,13 +53,13 @@ static char	*manage_eof(t_dlst **rems, t_dlst **fd_e, t_dlst **chks, size_t clr)
 	return (line);
 }
 
-static char	*rec_liner(t_dlst **rems, t_dlst **fd_e, t_dlst **chks, size_t last)
+static char	*rec_liner(t_gdl **rems, t_gdl **fd_e, t_gdl **chks, size_t last)
 {
 	size_t	n_chrs;
 	size_t	idx;
 	size_t	rm;
 	size_t	nl_found;
-	t_dlst	*elem;
+	t_gdl	*elem;
 
 	n_chrs = read((*fd_e)->n, (*rems)->str, BUFFER_SIZE);
 	if (!n_chrs || n_chrs == E_IFD)
@@ -79,7 +79,7 @@ static char	*rec_liner(t_dlst **rems, t_dlst **fd_e, t_dlst **chks, size_t last)
 	return (rec_liner(rems, fd_e, chks, nl_found));
 }
 
-static char	*gnl_prep(t_dlst **rems, t_dlst **fd_e, t_dlst **chks, size_t fd)
+static char	*gnl_prep(t_gdl **rems, t_gdl **fd_e, t_gdl **chks, size_t fd)
 {
 	size_t	idx;
 	size_t	nl_found;
@@ -108,10 +108,10 @@ static char	*gnl_prep(t_dlst **rems, t_dlst **fd_e, t_dlst **chks, size_t fd)
 
 char	*get_next_line(int fd)
 {
-	static t_dlst	*rems;
-	t_dlst			*fd_elem;
+	static t_gdl	*rems;
+	t_gdl			*fd_elem;
 	char			*line;
-	t_dlst			*chks;
+	t_gdl			*chks;
 
 	chks = NULL;
 	line = NULL;
