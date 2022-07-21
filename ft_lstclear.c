@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:47:19 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/04/13 18:48:39 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:54:58 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*cur;
 
-	if (!lst || !del)
+	if (!lst)
 		return ;
 	while (*lst)
 	{
