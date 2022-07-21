@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 01:52:07 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/15 02:15:10 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:12:43 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -14,7 +14,7 @@
 // writes n bytes of data following addr ptr in binary
 void	ft_putbin(const void *addr, size_t n)
 {
-	unsigned char byte;
+	unsigned char	byte;
 
 	while (n--)
 	{

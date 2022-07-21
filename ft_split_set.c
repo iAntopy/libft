@@ -6,11 +6,18 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:55:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/07 18:10:45 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:04:55 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	clear_str_tab(char **tab)
+{
+	while (tab && *tab)
+		free(*(tab++));
+	return (0);
+}
 
 static int	char_in_set(char c, char *set)
 {
@@ -52,7 +59,9 @@ static int	word_splitter(char **tab, char const *s, char *set)
 		{
 			while (*(s + j) && !char_in_set(*(s + j), set))
 				j++;
-			tab[wcount++] = ft_substr(s, 0, j);
+			tab[wcount] = ft_substr(s, 0, j);
+			if (!tab[wcount++])
+				return (clear_str_tab(tab));
 		}
 		s += j;
 	}
@@ -64,13 +73,14 @@ char	**ft_split_set(char const *s, char *set)
 	char	**tab;
 	int		wcount;
 
+	tab = NULL;
 	if (!s)
 		return (NULL);
 	wcount = word_counter(s, set);
-	tab = malloc(sizeof(char *) * (wcount + 1));
-	if (!tab)
+	if (!malloc_free_p(sizeof(char *) * (wcount + 1), (void **)tab))
 		return (NULL);
-	word_splitter(tab, s, set);
+	if (!word_splitter(tab, s, set) && malloc_free_p(0, (void **)tab))
+		return (NULL);
 	tab[wcount] = NULL;
 	return (tab);
 }

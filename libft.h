@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/19 18:49:11 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:14:51 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,11 @@
 # define XX_BASE "0123456789ABCDEF"
 # define DEC_BASE "0123456789"
 
-
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdio.h>
-
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
@@ -117,9 +115,8 @@ ssize_t	ft_deltatime_usec(char *note);
 float	ft_random(void);
 int		ft_randint(int min, int range);
 
-int	malloc_free_p(size_t size, void **ptr);
+int		malloc_free_p(size_t size, void **ptr);
 void	*malloc_free(size_t size, void **ptr);
-
 
 /////// GET_NEXT_LINE ////////
 # ifndef BUFFER_SIZE
@@ -148,14 +145,10 @@ int		join_clear_list(char *line, t_gdl **elem);
 char	*gather_line(t_gdl **chks);
 ////////////////////////////////
 
-
-
 ////////// FT_PRINTF ///////////
-int	ft_printf(const char *fmt, ...);
-int	ft_vprintf(const char *fmt, va_list *ap);
+int		ft_printf(const char *fmt, ...);
+int		ft_vprintf(const char *fmt, va_list *ap);
 /////////////////////////////////
-
-
 
 /////// SINGLE LINKED LIST FUNCTIONS ////////
 typedef struct s_list
@@ -169,7 +162,7 @@ t_list	*ft_lstcreate(void *content, size_t size_of);
 void	ft_lstinsert(t_list **lst, unsigned int index, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-int	ft_lstsize(t_list *lst);
+int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	*ft_lstpop(t_list **lst, unsigned int index);
