@@ -6,11 +6,11 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:14:12 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/19 18:32:09 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/08/03 22:27:41 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-#include "get_next_line.h"
+//#include "get_next_line.h"
 
 static size_t	scan_for_nl(char *buff, size_t n, size_t *idx)
 {
@@ -61,7 +61,7 @@ static char	*rec_liner(t_gdl **rems, t_gdl **fd_e, t_gdl **chks, size_t last)
 	size_t	nl_found;
 	t_gdl	*elem;
 
-	n_chrs = read((*fd_e)->n, (*rems)->str, BUFFER_SIZE);
+	n_chrs = read((*fd_e)->n, (*rems)->str, GNL_BUFFER_SIZE);
 	if (!n_chrs || n_chrs == E_IFD)
 		return (manage_eof(rems, fd_e, chks, 0));
 	nl_found = scan_for_nl((*rems)->str, n_chrs, &idx);
@@ -69,7 +69,7 @@ static char	*rec_liner(t_gdl **rems, t_gdl **fd_e, t_gdl **chks, size_t last)
 	rm = n_chrs - idx;
 	elem = *chks;
 	if ((last && !get_substr((*rems)->str, 0, n_chrs, &((*fd_e)->str)))
-		|| (!last && !dlst_insert(chks, &elem, NULL, idx))
+		|| (!last && !gdl_insert(chks, &elem, NULL, idx))
 		|| (!last && !get_substr((*rems)->str, 0, idx, &(elem->str)))
 		|| (!last && !get_substr((*rems)->str, idx, rm, &((*fd_e)->str))))
 		return (manage_eof(rems, fd_e, chks, E_MLC));
@@ -88,14 +88,14 @@ static char	*gnl_prep(t_gdl **rems, t_gdl **fd_e, t_gdl **chks, size_t fd)
 	while ((*fd_e)->next && (*fd_e)->next->n != fd)
 		*fd_e = (*fd_e)->next;
 	*fd_e = (*fd_e)->next;
-	if (!(*fd_e) && !dlst_insert(rems, fd_e, NULL, SIZE_MAX))
+	if (!(*fd_e) && !gdl_insert(rems, fd_e, NULL, SIZE_MAX))
 		return (manage_eof(rems, fd_e, chks, E_MLC));
 	(*fd_e)->n = fd;
 	nl_found = scan_for_nl((*fd_e)->str, SIZE_MAX, &idx);
 	idx += nl_found;
 	if (!(*fd_e)->str || !nl_found || (nl_found && (*fd_e)->str[idx] == '\0'))
 	{
-		if ((*fd_e)->str && !dlst_insert(NULL, chks, (*fd_e)->str, idx))
+		if ((*fd_e)->str && !gdl_insert(NULL, chks, (*fd_e)->str, idx))
 			return (manage_eof(rems, fd_e, chks, E_MLC));
 		(*fd_e)->str = NULL;
 		return (rec_liner(rems, fd_e, chks, nl_found));
@@ -115,10 +115,10 @@ char	*get_next_line(int fd)
 
 	chks = NULL;
 	line = NULL;
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || GNL_BUFFER_SIZE < 1)
 		return (NULL);
-	if ((!rems && !dlst_insert(NULL, &rems, NULL, 0))
-		|| (!rems->str && !malloc_free_p(sizeof(char) * BUFFER_SIZE,
+	if ((!rems && !gdl_insert(NULL, &rems, NULL, 0))
+		|| (!rems->str && !malloc_free_p(sizeof(char) * GNL_BUFFER_SIZE,
 				(void **)&(rems->str))))
 		return (manage_eof(&rems, &fd_elem, &chks, E_MLC));
 	fd_elem = rems;

@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/21 18:14:51 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/08/03 22:43:59 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*ft_strstr(const char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
+int		ft_atoi_base(const char *str, int base, const char *base_str);
 void	*ft_calloc(size_t nmemb, size_t size);
 
 int		ft_isalnum(int c);
@@ -80,6 +81,7 @@ int		ft_toupper(int c);
 
 void	*ft_memalloc(size_t size);
 void	ft_memdel(void **ap);
+void	ft_memclear(void *dest, size_t size);
 char	*ft_strnew(size_t size);
 void	ft_strdel(char **as);
 void	ft_striter(char *s, void (*f)(char *));
@@ -119,8 +121,8 @@ int		malloc_free_p(size_t size, void **ptr);
 void	*malloc_free(size_t size, void **ptr);
 
 /////// GET_NEXT_LINE ////////
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
+# ifndef GNL_BUFFER_SIZE
+#  define GNL_BUFFER_SIZE 4096
 # endif
 
 typedef struct s_gdl
@@ -159,7 +161,7 @@ typedef struct s_list
 
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstcreate(void *content, size_t size_of);
-void	ft_lstinsert(t_list **lst, unsigned int index, t_list *new);
+int		ft_lstinsert(t_list **lst, unsigned int index, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
