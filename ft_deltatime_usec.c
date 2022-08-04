@@ -6,13 +6,12 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 18:10:46 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/21 18:11:30 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/08/04 01:41:54 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <sys/time.h>
-#include <stdio.h>
 
 static void	ft_put_delta_t(ssize_t d, char *note)
 {
@@ -23,7 +22,7 @@ static void	ft_put_delta_t(ssize_t d, char *note)
 	secs = d / 1000000;
 	ms = (d % 1000000) / 1000;
 	us = (d % 1000);
-	printf("%ld sec, %ld ms and %ld usec elapsed : %s\n", secs, ms, us, note);
+	ft_printf("%ld sec, %ld ms and %ld usec elapsed : %s\n", secs, ms, us, note);
 }
 
 ssize_t	ft_deltatime_usec(char *note)
