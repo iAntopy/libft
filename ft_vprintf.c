@@ -6,11 +6,11 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 15:39:02 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/07 15:49:07 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/08/10 23:30:57 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static void	rec_putnbr_base(size_t n, char *base, size_t radix, size_t *count)
 {
@@ -25,7 +25,7 @@ static void	ft_putnbr_base(ssize_t n, char *base, size_t radix, size_t *count)
 	rec_putnbr_base((size_t)(n * (1 - (2 * (n < 0)))), base, radix, count);
 }
 
-static void	ft_putstr(const char *str, size_t *count)
+static void	ft_printstr(const char *str, size_t *count)
 {
 	if (!str)
 		*count += write(1, "(null)", 6);
@@ -42,7 +42,7 @@ static void	print_flag(char flag, va_list *ap, size_t *count)
 		*count += write(1, &flag, 1);
 	}
 	else if (flag == 's')
-		ft_putstr((char *)va_arg(*ap, char *), count);
+		ft_printstr((char *)va_arg(*ap, char *), count);
 	else if (flag == 'p')
 	{
 		*count += write(1, "0x", 2);

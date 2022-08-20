@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fperror.c                                          :+:      :+:    :+:   */
+/*   ft_atoi_base_test.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:30:32 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/10 23:30:13 by iamongeo         ###   ########.fr       */
+/*   Created: 2022/08/03 22:40:05 by iamongeo          #+#    #+#             */
+/*   Updated: 2022/08/03 23:07:47 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <errno.h>
 
-void	fperror(char *fmt, ...)
+int	main()
 {
-	va_list	ap;
+	int	result;
 
-	va_start(ap, fmt);
-	ft_vprintf(fmt, &ap);
-	perror(" ");
-	va_end(ap);
+	result = ft_atoi_base("              -000000000123+++_+_+", 10, "0123456789");
+	ft_printf("result : %d\n", result);
+	return (0);
 }

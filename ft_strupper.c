@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fperror.c                                          :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:30:32 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/10 23:30:13 by iamongeo         ###   ########.fr       */
+/*   Created: 2022/08/18 21:19:57 by iamongeo          #+#    #+#             */
+/*   Updated: 2022/08/18 21:46:11 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <errno.h>
 
-void	fperror(char *fmt, ...)
+char	*ft_strupper(char *str)
 {
-	va_list	ap;
+	char	*s;
 
-	va_start(ap, fmt);
-	ft_vprintf(fmt, &ap);
-	perror(" ");
-	va_end(ap);
+	if (!str)
+		return (NULL);
+	s = str;
+	while (*s)
+	{
+		if (ft_islower(*s))
+			*s -= 32;
+		s++;
+	}
+	return (str);
 }

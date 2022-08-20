@@ -1,4 +1,4 @@
-FUNC_NAMES_M = issign isspace isalpha isdigit isalnum isascii isprint strlen memset bzero memcpy memmove strlcpy strlcat toupper tolower strchr strrchr strncmp memchr memcmp strnstr atoi atoi_base calloc strlcat substr strjoin strtrim split split_set split_space itoa strmapi striteri putchar_fd putstr_fd putendl_fd putnbr_fd strdup
+FUNC_NAMES_M = issign isspace isalpha isdigit isalnum isascii isprint strlen memset bzero memcpy memmove strlcpy strlcat isupper islower toupper tolower strchr strrchr strcmp strncmp memchr memcmp strnstr atoi atoi_base calloc strlcat substr strjoin strtrim split split_set split_space itoa strmapi striteri putchar_fd putstr_fd putendl_fd putnbr_fd strdup pow strlower strupper #atof
 
 FUNC_NAMES_B = lstnew lstcreate lstinsert lstadd_front lstadd_back lstsize lstlast lstdelone lstclear lstiter lstmap lstpop lstmap lstprint
 

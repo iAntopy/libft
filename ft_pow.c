@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fperror.c                                          :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 15:30:32 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/10 23:30:13 by iamongeo         ###   ########.fr       */
+/*   Created: 2022/08/11 20:24:41 by iamongeo          #+#    #+#             */
+/*   Updated: 2022/08/11 20:35:11 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include <errno.h>
 
-void	fperror(char *fmt, ...)
+int	ft_pow(int nb, int exp)
 {
-	va_list	ap;
+	int	res;
 
-	va_start(ap, fmt);
-	ft_vprintf(fmt, &ap);
-	perror(" ");
-	va_end(ap);
+	if (!exp)
+		return (1);
+	if (!nb || (exp < 0))
+		return (0);
+	res = nb;
+	while (--exp)
+		res *= nb;
+	return (res);
 }
