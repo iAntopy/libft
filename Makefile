@@ -1,9 +1,20 @@
-FUNC_NAMES_M = issign isspace isalpha isdigit isalnum isascii isprint strlen memset bzero memcpy memmove strlcpy strlcat isupper islower toupper tolower strchr strrchr strcmp strncmp memchr memcmp strnstr atoi atoi_base calloc strlcat substr strjoin strtrim split split_set split_space itoa strmapi striteri putchar_fd putstr_fd putendl_fd putnbr_fd strdup pow strlower strupper #atof
+FUNC_NAMES_M =	issign isspace isalpha isdigit isalnum isascii		\
+		isprint strlen memset bzero memcpy memmove strlcpy	\
+		strlcat isupper islower toupper tolower strchr strrchr	\
+		strcmp strncmp memchr memcmp strnstr atoi atoi_base itoa\
+		calloc strlcat substr strjoin strtrim strdup		\
+		split split_set split_space				\
+		strmapi striteri					\
+		putchar_fd putstr_fd putendl_fd putnbr_fd		\
+		pow strlower strupper #atof				
 
-FUNC_NAMES_B = lstnew lstcreate lstinsert lstadd_front lstadd_back lstsize lstlast lstdelone lstclear lstiter lstmap lstpop lstmap lstprint
+FUNC_NAMES_B =	lstnew lstcreate lstinsert lstadd_front lstadd_back lstsize	\
+		lstlast lstdelone lstclear lstiter lstmap lstpop lstmap lstprint
 
 # ft_randint not included because is in same file as ft_random
-FUNC_NAMES_EXTRA = ft_printf ft_vprintf ft_random ft_clamp fperror malloc_free get_next_line ft_deltatime_usec ft_memclear
+FUNC_NAMES_EXTRA =	ft_printf ft_vprintf ft_random ft_clamp fperror malloc_free	\
+			get_next_line ft_deltatime_usec ft_memclear strtab_utils	\
+			find_file_in_env
 
 PREF		= ft_
 SUF_M		= .c
