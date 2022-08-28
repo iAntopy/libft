@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   .c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 15:41:58 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/04/15 20:11:15 by iamongeo         ###   ########.fr       */
+/*   Created: 2022/08/28 05:57:42 by iamongeo          #+#    #+#             */
+/*   Updated: 2022/08/28 05:58:14 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ void	*ft_calloc(size_t n, size_t s)
 	if (s > (SIZE_MAX / n))
 		return (NULL);
 	mem_size = n * s;
-	ptr = malloc(mem_size);
-	if (!ptr)
+	if (!malloc_free_p(mem_size, (void **)&ptr))
 		return (NULL);
-	ft_memset(ptr, 0, mem_size);
+	ft_memclear(ptr, mem_size);
 	return (ptr);
 }

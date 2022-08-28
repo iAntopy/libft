@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:52:47 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/04/14 14:44:50 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/08/28 03:59:40 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ char	*ft_strdup(const char *str)
 	size_t	str_len;
 
 	str_len = ft_strlen(str);
-	dup = (char *)malloc(sizeof(char) * (str_len + 1));
-	if (!dup)
+	if (!malloc_free_p(sizeof(char) * (str_len + 1), (void **)&dup))
 		return (NULL);
 	d = dup;
 	while (*str)
