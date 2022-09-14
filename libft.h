@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/02 12:44:33 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/14 15:12:11 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+char	*ft_strchr_set(const char *s, const char *set);
+char	*ft_strrchr_set(const char *s, const char *set);
 char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 char	*ft_strstr(const char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);
