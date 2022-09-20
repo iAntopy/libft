@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 04:23:34 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/02 21:43:12 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/10 06:09:12 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	strtab_clear(char ***tab)
 {
 	char	**t;
 
+	if (!tab || !(*tab))
+		return ;
 	t = *tab;
 	t--;
 	while (*(++t))
@@ -46,4 +48,24 @@ void	strtab_swap(char **tab, int index1, int index2)
 	temp = tab[index1];
 	tab[index1] = tab[index2];
 	tab[index2] = temp;
+}
+
+void	strtab_print(char **tab)
+{
+	int	i;
+
+	if (!tab)
+	{
+		fperror("libft : %s : missing argument {tab}\n", __FUNCTION__);
+		return ;
+	}
+	i = 1;
+	ft_printf("\n@----------String Table-----------@\n");
+	while (*tab)
+	{
+		ft_printf("| %d - %s$\n", i, *tab);
+		i++;
+		tab++;
+	}
+	ft_printf("@---------------@@@--------------@\n");
 }

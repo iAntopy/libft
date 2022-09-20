@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/14 15:12:11 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:50:44 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,10 @@ double	ft_atof(const char *str);
 int		ft_pow(int nb, int exp);
 char	*ft_strlower(char *str);
 char	*ft_strupper(char *str);
+
+char	substring_substitution(char *str, char **subst);
+void	restore_substring(char *str, char sc);
+void	restore_substrings_in_tab(char **tab, char sc);
 
 void	ft_putchar(int c);
 void	ft_putstr(char const *s);
