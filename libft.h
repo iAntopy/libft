@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/19 20:50:44 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 21:22:56 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	ft_swap_i(int *a, int *b);
 void	ft_swap_f(float *a, float *b);
 int		ft_clamp(int n, int min, int max);
 
+int		set_errno(int n);
 void	fperror(char *fmt, ...);
 ssize_t	ft_deltatime_usec(void);
 ssize_t	ft_deltatime_usec_note(char *note);
