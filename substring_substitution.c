@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 16:45:15 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/19 20:56:26 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:06:34 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	find_suitable_subst_char(char *str)
 	while (sp_chrs[++i])
 		if (!ft_strchr(str, sp_chrs[i]))
 			return (sp_chrs[i]);
-	return (0);  
+	return (0);
 }
 
 static char	*find_substring(char *str)
@@ -50,18 +50,18 @@ char	substring_substitution(char *str, char	**subst)
 	char	sc;
 	char	dlim;
 	char	*sub;
-	char	*dup;
 
+	*subst = NULL;
 	if (!str || !subst)
 		return (0);
 	sc = find_suitable_subst_char(str);
-	if (!sc)
+	sub = find_substring(str);
+	if (!sc || !sub)
 		return (0);
-	dup = ft_strdup(str);
-	ft_printf("dup : %s\n", dup);
-	sub = find_substring(dup);
-	if (!sub && !malloc_free_p(0, (void **)&dup))
+	*subst = ft_strdup(str);
+	if (!(*subst))
 		return (0);
+	sub = *subst + (sub - str);
 	while (sub)
 	{
 		dlim = *sub;
@@ -70,7 +70,6 @@ char	substring_substitution(char *str, char	**subst)
 		ft_memmove(sub - 1, sub + 1, ft_strlen(sub + 1) + 1);
 		sub = find_substring(sub - 1);
 	}
-	*subst = dup;
 	return (sc);
 }
 
@@ -91,21 +90,24 @@ void	restore_substrings_in_tab(char **tab, char sc)
 	while (*tab)
 		restore_substring(*(tab++), sc);
 }
-/*
+
 int	main()
 {
 	char	str[] = "Ceci est une 'quote de fou' ! \"Incoyable ce truc de oof             \" !";
+	char	*subst;
 	char	sc;
 	char	**tab;
 	
-	sc = substring_substitution(str);
+	sc = substring_substitution(str, &subst);
 	ft_printf("Final string after substitution : %s\n", str);
-	tab = ft_split(str, ' ');
+	tab = ft_split(subst, ' ');
 	ft_printf("tab after substring substitution : \n");
 	strtab_print(tab);
 	restore_substrings_in_tab(tab, sc);
 	ft_printf("tab after subtring recovery : \n");
 	strtab_print(tab);
+	ft_printf("Original str : %s\n", str);
+	ft_printf("Substituted str : %s\n", subst);
 	return (0);
 }
-*/
+
