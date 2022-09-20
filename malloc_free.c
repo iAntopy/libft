@@ -6,14 +6,14 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 23:16:35 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/12 23:18:40 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 23:14:50 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
 int	malloc_free_p(size_t size, void **ptr)
 {	
-	if (size)
+	if (size && ptr)
 	{
 		*ptr = malloc(size);
 		return (*ptr != NULL);
