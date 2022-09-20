@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 16:45:15 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/19 22:06:34 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/19 22:14:41 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	restore_substrings_in_tab(char **tab, char sc)
 	while (*tab)
 		restore_substring(*(tab++), sc);
 }
-
+/*
 int	main()
 {
 	char	str[] = "Ceci est une 'quote de fou' ! \"Incoyable ce truc de oof             \" !";
@@ -110,4 +110,4 @@ int	main()
 	ft_printf("Substituted str : %s\n", subst);
 	return (0);
 }
-
+*/
