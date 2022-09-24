@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/23 20:07:07 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/23 20:10:11 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
 int		ft_atoi_base(const char *str, int base, const char *base_str);
-int		ft_atol(const char *str);
+ssize_t	ft_atol(const char *str);
 void	*ft_calloc(size_t nmemb, size_t size);
 
 int		ft_isalnum(int c);
