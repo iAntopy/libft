@@ -3,7 +3,7 @@ FUNC_NAMES_M =	issign isspace isalpha isdigit isalnum isascii		\
 		strlcat isupper islower toupper tolower				\
 		strchr strrchr strchr_set strrchr_set				\
 		strcmp strncmp memchr memcmp memclear strnstr		\
-		atoi atoi_base itoa 					\
+		atoi atol atoi_base itoa 					\
 		calloc strlcat substr strjoin strtrim strdup		\
 		split split_set split_space				\
 		strmapi striteri					\
