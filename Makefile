@@ -13,7 +13,7 @@ FUNC_NAMES_M =	issign isspace isalpha isdigit isalnum isascii		\
 FUNC_NAMES_X =	ft_printf ft_eprintf ft_vprintf ft_random ft_clamp fperror 	\
 		malloc_free get_next_line get_next_line_utils ft_deltatime_usec \
 		strtab_utils find_file_in_env substring_substitution set_errno	\
-		ft_swap
+		ft_swap variable_length_array
 
 
 FUNC_NAMES_B =	lstnew lstcreate lstinsert lstadd_front lstadd_back lstsize	\

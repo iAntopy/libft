@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/23 20:10:11 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:37:39 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,28 @@ int		ft_printf(const char *fmt, ...);
 int		ft_eprintf(const char *fmt, ...);
 int		ft_vprintf(const char *fmt, va_list *ap);
 /////////////////////////////////
+
+/////// VARIABLE LENGTH ARRAY /////////
+// Variable length array that somewhat acts like a linked list. Can be indexed,
+// appended to other varrs, split, copied. int type only.
+
+#define	VARR_CHUNK_LEN 256
+
+typedef struct	s_variable_len_array
+{
+	int		*arr;
+	size_t	len;
+	size_t	__alloced_chks;
+	size_t	__max_len;
+	size_t	__cur_size;
+}	t_varr;
+
+t_varr	*varr_create(size_t size);
+void	*varr_clear(t_varr **va);
+t_varr	*varr_append(t_varr *va, int nb);
+t_varr	*varr_remove(t_varr *va, size_t idx);
+void	varr_print(t_varr *va);
+///////////////////////////////////////
 
 /////// SINGLE LINKED LIST FUNCTIONS ////////
 typedef struct s_list
