@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 19:32:16 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:36:50 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,9 @@ typedef struct	s_variable_len_array
 
 t_varr	*varr_create(size_t size);
 void	*varr_clear(t_varr **va);
+t_varr	*varr_copy(t_varr *va);
 t_varr	*varr_append(t_varr *va, int nb);
+t_varr	*varr_concatenate(t_varr *dst, t_varr *va);
 t_varr	*varr_remove(t_varr *va, size_t idx);
 void	varr_print(t_varr *va);
 ///////////////////////////////////////
