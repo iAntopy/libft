@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:49:37 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/30 22:49:36 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 15:43:10 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ t_varr	*varr_remove(t_varr *va, size_t i)
 	size_t	new_size;
 	size_t	old_size;
 
-	if (i < 0 || va->len <= i)
+	if (i >= va->len)
 		return (NULL);
 	else if ((va->len - 1) < (va->__max_len / 4) && (va->len >= VARR_CHUNK_LEN))
 	{
