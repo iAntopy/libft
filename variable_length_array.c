@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:49:37 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 15:43:10 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 17:18:02 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,6 @@ t_varr	*varr_create(size_t n)
 	va->__alloced_chks = div;
 	va->__max_len = div * VARR_CHUNK_LEN;
 	va->__cur_size = size;
-	return (va);
-}
-
-void	*varr_clear(t_varr **va)
-{
-	if (!va)
-		return (NULL);
-	malloc_free_p(0, (void **)&((*va)->arr));
-	malloc_free_p(0, (void **)va);
-	return (NULL);
-}
-
-t_varr	*varr_copy(t_varr *src)
-{
-	t_varr	*va;
-
-	va = varr_create(src->len);
-	if (!va)
-		return (NULL);
-	ft_memcpy(va->arr, src->arr, src->__cur_size);
 	return (va);
 }
 
@@ -107,35 +87,76 @@ t_varr	*varr_remove(t_varr *va, size_t i)
 	ft_memmove(va->arr + i, va->arr + i + 1, (va->len - i) * sizeof(int));
 	return (va);
 }
+
+t_varr	*varr_concatenate(t_varr *dst, t_varr *va)
+{
+	int	*arr;
+
+	if (!dst || !va)
+		return (NULL);
+	if (!malloc_free_p(dst->__cur_size + va->__cur_size, (void **)&arr))
+		return (NULL);
+	dst->__cur_size += va->__cur_size;
+	dst->__alloced_chks += va->__alloced_chks;
+	dst->__max_len += va->__max_len;
+	ft_memcpy(arr, dst->arr, dst->len * sizeof(int));
+	ft_memcpy(arr + dst->len, va->arr, va->len * sizeof(int));
+	dst->len += va->len;
+	malloc_free_p(0, (void **)&dst->arr);
+	dst->arr = arr;
+	return (dst);
+}
 /*
 int	main()
 {
 	t_varr	*va;
+	t_varr	*va2;
 	int		n;
 	int		i;
 
 	n = 8;
 	va = varr_create(n);
+	va2 = varr_create(n);
 	varr_print(va);
+	varr_print(va2);
 	i = -1;
 	while (++i < n)
 	{
 		varr_append(va, 42 + i);
 	}
+	i = -1;
+	while (++i < n)
+	{
+		varr_append(va2, 1000 + i);
+	}
+
 	varr_print(va);
-	varr_append(va, 42 + i);
-	varr_print(va);
+	varr_print(va2);
 	printf("sortie 2e print \n");
 	printf("max_len : %zu\n", va->__max_len);
 	i = -1;
 	printf("après i = -1\n");
-	while (++i < 7)
+	while (++i < 6)
 	{
 		printf("len : %zu\n", va->len);
 		varr_remove(va, 1);
 	}
+	
+	ft_printf("Concatenating va2 to va variable array : \n");
+	ft_printf("va : ");
 	varr_print(va);
+	ft_printf("va2 : ");
+	varr_print(va2);
+
+	varr_concatenate(va, va2);
+
+	ft_printf("Result : \nva : ");
+	varr_print(va);
+	ft_printf("va2 : ");
+	varr_print(va2);
+
 	varr_clear(&va);
+	varr_clear(&va2);
 
 	return (0);
 }
