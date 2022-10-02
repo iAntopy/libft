@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/30 22:37:39 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 19:32:16 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ char	**ft_split_set(char const *s, char *set);
 char	**ft_split_space(char const *s);
 char	*ft_itoa(int n);
 double	ft_atof(const char *str);
-int		ft_pow(int nb, int exp);
+int		ft_pow(const int nb, int exp);
+int		ft_abs(const int nb);
 char	*ft_strlower(char *str);
 char	*ft_strupper(char *str);
 
