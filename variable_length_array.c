@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:49:37 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 17:18:02 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 20:40:08 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,12 @@ t_varr	*varr_concatenate(t_varr *dst, t_varr *va)
 	dst->arr = arr;
 	return (dst);
 }
-/*
+
 int	main()
 {
 	t_varr	*va;
 	t_varr	*va2;
+	t_varr	*va3;
 	int		n;
 	int		i;
 
@@ -155,9 +156,15 @@ int	main()
 	ft_printf("va2 : ");
 	varr_print(va2);
 
+	va3 = varr_copy(va);
+	ft_printf("va3 modified post copy : ");
+	varr_append(va3, INT_MAX);
+	varr_print(va3);
+
 	varr_clear(&va);
 	varr_clear(&va2);
+	varr_clear(&va3);
 
 	return (0);
 }
-*/
+

@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:45:39 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 16:17:49 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 20:38:22 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ t_varr	*varr_copy(t_varr *src)
 	va = varr_create(src->len);
 	if (!va)
 		return (NULL);
-	ft_memcpy(va->arr, src->arr, src->__cur_size);
+	va->len = src->len;
+	va->__alloced_chks = src->__alloced_chks;
+	va->__max_len = src->__max_len;
+	va->__cur_size = src->__cur_size;
+	ft_memcpy(va->arr, src->arr, src->len * sizeof(int));
 	return (va);
 }
 
@@ -37,7 +41,7 @@ void	varr_print(t_varr *va)
 	size_t	i;
 
 	if (!va->len)
-		ft_printf("[/]\n");
+		ft_printf("[ ]\n");
 	else if (va->len == 1)
 		printf("[ %d ]\n", va->arr[0]);
 	else
