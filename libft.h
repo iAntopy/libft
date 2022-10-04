@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 19:36:50 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:00:48 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char	*ft_itoa(int n);
 double	ft_atof(const char *str);
 int		ft_pow(const int nb, int exp);
 int		ft_abs(const int nb);
+int		ft_sqrt(const int nb);
 char	*ft_strlower(char *str);
 char	*ft_strupper(char *str);
 
