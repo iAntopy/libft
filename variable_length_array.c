@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:49:37 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 20:40:08 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/04 17:34:16 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ t_varr	*varr_create(size_t n)
 	int		mod;
 	size_t	size;
 
-	if (n < 1)
-		return (NULL);
 	div = n / VARR_CHUNK_LEN;
 	mod = n % VARR_CHUNK_LEN;
-	div += !!mod;
+	div += !!mod + !n;
 	size = sizeof(int) * VARR_CHUNK_LEN * div;
 	if (!malloc_free_p(sizeof(t_varr), (void **)&va)
 		|| !malloc_free_p(size, (void **)&va->arr))
@@ -39,7 +37,7 @@ t_varr	*varr_create(size_t n)
 	return (va);
 }
 
-t_varr	*varr_append(t_varr *va, int nb)
+t_varr	*varr_append(t_varr *va, int value)
 {
 	int		*new_arr;
 	size_t	new_size;
@@ -58,7 +56,7 @@ t_varr	*varr_append(t_varr *va, int nb)
 		va->arr = new_arr;
 		va->__cur_size = new_size;
 	}
-	va->arr[va->len++] = nb;
+	va->arr[va->len++] = value;
 	return (va);
 }
 
@@ -106,7 +104,7 @@ t_varr	*varr_concatenate(t_varr *dst, t_varr *va)
 	dst->arr = arr;
 	return (dst);
 }
-
+/*
 int	main()
 {
 	t_varr	*va;
@@ -167,4 +165,4 @@ int	main()
 
 	return (0);
 }
-
+*/

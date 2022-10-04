@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:45:39 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 20:38:22 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/02 21:09:51 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_varr	*varr_copy(t_varr *src)
 {
 	t_varr	*va;
 
+	ft_printf("varr_copy : trying to copy src %p with len %d\n", src, src->len);
 	va = varr_create(src->len);
 	if (!va)
 		return (NULL);
