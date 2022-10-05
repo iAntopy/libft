@@ -6,18 +6,11 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:55:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/28 02:00:54 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:50:26 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	clear_str_tab(char **tab)
-{
-	while (tab && *tab)
-		free(*(tab++));
-	return (0);
-}
 
 static int	word_counter(char const *s, char c)
 {
@@ -53,7 +46,7 @@ static int	word_splitter(char **tab, char const *s, char c)
 				j++;
 			tab[wcount] = ft_substr(s, 0, j);
 			if (!tab[wcount++])
-				return (clear_str_tab(tab));
+				return ((int)strtab_clear(&tab));
 		}
 		s += j;
 	}
@@ -71,7 +64,7 @@ char	**ft_split(char const *s, char c)
 	wcount = word_counter(s, c);
 	if (!malloc_free_p(sizeof(char *) * (wcount + 1), (void **)&tab))
 		return (NULL);
-	tab[wcount] = NULL;
+	ft_memclear(tab, sizeof(char *) * (wcount + 1));
 	if (!word_splitter(tab, s, c) && malloc_free_p(0, (void **)tab))
 		return (NULL);
 	return (tab);
