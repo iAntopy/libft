@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 18:56:07 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:43:32 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,9 +196,9 @@ int		ft_vprintf(const char *fmt, va_list *ap);
 // Variable length array that somewhat acts like a linked list. Can be indexed,
 // appended to other varrs, split, copied. int type only.
 
-#define	VARR_CHUNK_LEN 256
+# define VARR_CHUNK_LEN 256
 
-typedef struct	s_variable_len_array
+typedef struct s_variable_len_array
 {
 	int		*arr;
 	size_t	len;
@@ -212,13 +212,19 @@ void	*varr_clear(t_varr **va);
 t_varr	*varr_copy(t_varr *va);
 t_varr	*varr_append(t_varr *va, int nb);
 t_varr	*varr_concatenate(t_varr *dst, t_varr *va);
-t_varr	*varr_remove(t_varr *va, size_t idx);
+t_varr	*varr_remove_idx(t_varr *va, size_t idx);
+t_varr	*varr_remove(t_varr *va, int value);
 void	varr_print(t_varr *va);
 int		varr_pop(t_varr *va, int *ret);
 int		varr_pop_front(t_varr *va, int *ret);
+int		varr_sum(t_varr *va);
+int		*varr_max(t_varr *va);
+int		*varr_min(t_varr *va);
 int		varr_get(t_varr *va, size_t i, int *ret);
 int		varr_set(t_varr *va, size_t i, int value);
 int		varr_isempty(t_varr *va);
+int		varr_is_empty(t_varr *va);
+int		*varr_is_in(t_varr *va, int value);
 ///////////////////////////////////////
 
 /////// SINGLE LINKED LIST FUNCTIONS ////////

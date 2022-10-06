@@ -16,7 +16,7 @@ FUNC_NAMES_X =	ft_printf ft_eprintf ft_vprintf ft_random ft_clamp fperror 	\
 		strtab_utils find_file_in_env substring_substitution set_errno	\
 		ft_swap \
 		variable_length_array variable_length_array_utils	\
-		variable_length_array_ops						
+		variable_length_array_ops variable_length_array_tests	\
 
 FUNC_NAMES_B =	lstnew lstcreate lstinsert lstadd_front lstadd_back lstsize	\
 		lstlast lstdelone lstclear lstiter lstmap lstpop lstmap lstprint

@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:49:37 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/04 17:34:16 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:53:35 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_varr	*varr_create(size_t n)
 	int		mod;
 	size_t	size;
 
+	if (!n)
+		return (NULL);
 	div = n / VARR_CHUNK_LEN;
 	mod = n % VARR_CHUNK_LEN;
 	div += !!mod + !n;
@@ -60,7 +62,7 @@ t_varr	*varr_append(t_varr *va, int value)
 	return (va);
 }
 
-t_varr	*varr_remove(t_varr *va, size_t i)
+t_varr	*varr_remove_idx(t_varr *va, size_t i)
 {
 	int		*new_arr;
 	size_t	new_size;
@@ -86,6 +88,20 @@ t_varr	*varr_remove(t_varr *va, size_t i)
 	return (va);
 }
 
+t_varr	*varr_remove(t_varr *va, int value)
+{
+	int	*vp;
+
+	if (!va)
+		return (NULL);
+	vp = varr_is_in(va, value);
+	if (!vp)
+		return (va);
+	varr_remove_idx(va, vp - va->arr);
+	return (va);
+}
+
+// concatenates inplace in dst.
 t_varr	*varr_concatenate(t_varr *dst, t_varr *va)
 {
 	int	*arr;
@@ -112,6 +128,7 @@ int	main()
 	t_varr	*va3;
 	int		n;
 	int		i;
+	int		*value_p;
 
 	n = 8;
 	va = varr_create(n);
@@ -138,7 +155,7 @@ int	main()
 	while (++i < 6)
 	{
 		printf("len : %zu\n", va->len);
-		varr_remove(va, 1);
+		varr_remove_idx(va, 1);
 	}
 	
 	ft_printf("Concatenating va2 to va variable array : \n");
@@ -158,6 +175,30 @@ int	main()
 	ft_printf("va3 modified post copy : ");
 	varr_append(va3, INT_MAX);
 	varr_print(va3);
+
+	varr_remove(va3, 1003);
+	ft_printf("va3 after remove 1003 : \n");
+	varr_print(va3);
+	varr_remove(va3, 1005);
+	ft_printf("va3 after remove 1005 : \n");
+	varr_print(va3);
+	varr_remove(va3, -11234);
+	ft_printf("va3 after remove -11234 : \n");
+	varr_print(va3);
+
+	value_p = varr_is_in(va3, 1004);
+	ft_printf("Checking if 1004 in va3 : \n");
+	if (value_p)
+		ft_printf("1004 IN va3 ! %d at ptr %p\n", *value_p, value_p);
+	else
+		ft_printf("1004 NOT in va3 ! \n");
+	value_p = varr_is_in(va3, 1005);
+	ft_printf("Checking if 1005 in va3 : \n");
+	if (value_p)
+		ft_printf("1005 IN va3 ! %d at ptr %p\n", *value_p, value_p);
+	else
+		ft_printf("1005 NOT in va3 ! \n");
+
 
 	varr_clear(&va);
 	varr_clear(&va2);

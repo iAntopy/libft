@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:45:39 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/02 21:09:51 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/05 20:42:32 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	varr_print(t_varr *va)
 {
 	size_t	i;
 
+	if (!va)
+		return ;
 	if (!va->len)
 		ft_printf("[ ]\n");
 	else if (va->len == 1)

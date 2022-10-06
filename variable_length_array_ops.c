@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:28:50 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/04 17:49:03 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/05 21:29:32 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,18 @@ int	varr_pop_front(t_varr *va, int *ret)
 	return (0);
 }
 
-int	varr_isempty(t_varr *va)
+int	varr_sum(t_varr *va)
 {
+	size_t	i;
+	int		acc;
+
 	if (!va)
-		return (-1);
-	return (va->len == 0);
+		return (0);
+	acc = 0;
+	i = -1;
+	while (++i < va->len)
+		acc += va->arr[i];
+	return (acc);
 }
 /*
 int	main()
