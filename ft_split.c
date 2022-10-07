@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:55:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 18:50:26 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:28:20 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	word_splitter(char **tab, char const *s, char c)
 				j++;
 			tab[wcount] = ft_substr(s, 0, j);
 			if (!tab[wcount++])
-				return ((int)strtab_clear(&tab));
+				return (-1);
 		}
 		s += j;
 	}
@@ -65,7 +65,7 @@ char	**ft_split(char const *s, char c)
 	if (!malloc_free_p(sizeof(char *) * (wcount + 1), (void **)&tab))
 		return (NULL);
 	ft_memclear(tab, sizeof(char *) * (wcount + 1));
-	if (!word_splitter(tab, s, c) && malloc_free_p(0, (void **)tab))
-		return (NULL);
+	if (word_splitter(tab, s, c) <= 0)
+		return (strtab_clear(&tab));
 	return (tab);
 }
