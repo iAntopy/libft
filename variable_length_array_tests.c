@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 21:06:24 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 21:37:11 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/05 22:29:43 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	*varr_min(t_varr *va)
 	i = -1;
 	while (++i < va->len)
 		if (va->arr[i] < *best)
-			best = va->arr + i;			
+			best = va->arr + i;
 	return (best);
 }
 
