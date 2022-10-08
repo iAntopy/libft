@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 21:43:32 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/07 21:58:01 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ float	ft_random(void);
 int		ft_randint(int min, int range);
 
 int		malloc_free_p(size_t size, void **ptr);
+int		ft_malloc_p(size_t size, void **ptr);
+int		ft_free_p(void **ptr);
 void	*malloc_free(size_t size, void **ptr);
 
 ////////////// FILE SEARCH FUNCtIONS ////////////////
