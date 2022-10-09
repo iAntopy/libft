@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 18:49:37 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 21:53:35 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/07 20:20:20 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ t_varr	*varr_create(size_t n)
 	int		mod;
 	size_t	size;
 
-	if (!n)
-		return (NULL);
 	div = n / VARR_CHUNK_LEN;
 	mod = n % VARR_CHUNK_LEN;
 	div += !!mod + !n;

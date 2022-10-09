@@ -1,40 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variable_length_array_tests.c                      :+:      :+:    :+:   */
+/*   variable_length_array_min_max.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
+/*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/05 21:06:24 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/09 04:40:25 by iamongeo         ###   ########.fr       */
+/*   Created: 2022/10/09 04:35:35 by iamongeo          #+#    #+#             */
+/*   Updated: 2022/10/09 10:47:04 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	varr_isempty(t_varr *va)
-{
-	if (!va)
-		return (0);
-	return (va->len == 0);
-}
-
-int	varr_is_empty(t_varr *va)
-{
-	return (varr_isempty(va));
-}
-
-int	*varr_is_in(t_varr *va, int value)
+int	*varr_min_p(t_varr *va)
 {
 	size_t	i;
+	int		best_value;
+	int		*best;
 
-	if (!va || !va->arr)
+	if (!va)
 		return (NULL);
+	best_value = INT_MAX;
+	best = &best_value;
 	i = -1;
 	while (++i < va->len)
-		if (va->arr[i] == value)
-			return (va->arr + i);
-	return (NULL);
+		if (va->arr[i] < *best)
+			best = va->arr + i;
+	return (best);
+}
+
+int	*varr_max_p(t_varr *va)
+{
+	size_t	i;
+	int		best_value;
+	int		*best;
+
+	if (!va)
+		return (NULL);
+	best_value = INT_MIN;
+	best = &best_value;
+	i = -1;
+	while (++i < va->len)
+		if (va->arr[i] > *best)
+			best = va->arr + i;
+	return (best);
+}
+
+int	varr_min(t_varr *va)
+{
+	int	*val_p;
+
+	val_p = varr_min_p(va);
+	if (val_p)
+		return (*val_p);
+	return (0);
+}
+
+int	varr_max(t_varr *va)
+{
+	int	*val_p;
+
+	val_p = varr_max_p(va);
+	if (val_p)
+		return (*val_p);
+	return (0);
 }
 /*
 int	main()

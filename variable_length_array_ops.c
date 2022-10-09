@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 17:28:50 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/07 15:21:47 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/07 22:44:59 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	varr_get(t_varr *va, size_t i, int *ret)
 {
-	if (!va || !ret || (i >= va->len))
+	if (!va || (i >= va->len))
 		return (-1);
-	*ret = va->arr[i];
+	if (ret)
+		*ret = va->arr[i];
+	else
+		return (va->arr[i]);
 	return (0);
 }
 
