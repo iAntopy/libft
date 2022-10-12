@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:45:28 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/28 05:44:19 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:19:51 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*get_zero(void)
 {
 	char	*nstr;
 
-	if (!malloc_free_p(sizeof(char) * 2, (void **)&nstr))
+	if (!ft_malloc_p(sizeof(char) * 2, (void **)&nstr))
 		return (NULL);
 	nstr[0] = '0';
 	nstr[1] = '\0';
@@ -57,7 +57,7 @@ char	*ft_itoa(int n)
 	nb = n;
 	is_neg = (n < 0);
 	size = ft_log10(n) + is_neg;
-	if (!malloc_free_p(sizeof(char) * (size + 1), (void **)&nstr))
+	if (!ft_malloc_p(sizeof(char) * (size + 1), (void **)&nstr))
 		return (NULL);
 	if (is_neg)
 	{

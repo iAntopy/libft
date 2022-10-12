@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:14:12 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/03 22:27:41 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:25:31 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -47,8 +47,8 @@ static char	*manage_eof(t_gdl **rems, t_gdl **fd_e, t_gdl **chks, size_t clr)
 		(*fd_e)->prev->next = (*fd_e)->next;
 		if ((*fd_e)->next)
 			(*fd_e)->next->prev = (*fd_e)->prev;
-		malloc_free_p(0, (void **)&((*fd_e)->str));
-		malloc_free_p(0, (void **)fd_e);
+		ft_free_p((void **)&((*fd_e)->str));
+		ft_free_p((void **)fd_e);
 	}
 	return (line);
 }
@@ -118,7 +118,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || GNL_BUFFER_SIZE < 1)
 		return (NULL);
 	if ((!rems && !gdl_insert(NULL, &rems, NULL, 0))
-		|| (!rems->str && !malloc_free_p(sizeof(char) * GNL_BUFFER_SIZE,
+		|| (!rems->str && !ft_malloc_p(sizeof(char) * GNL_BUFFER_SIZE,
 				(void **)&(rems->str))))
 		return (manage_eof(&rems, &fd_elem, &chks, E_MLC));
 	fd_elem = rems;

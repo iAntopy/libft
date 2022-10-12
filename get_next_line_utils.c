@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:15:10 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/03 22:28:31 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:28:13 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -26,7 +26,7 @@ int	get_substr(char *str, size_t start, size_t n, char **ret)
 			r++;
 	if (n)
 	{
-		if (!malloc_free_p(sizeof(char) * (n + 1), (void **)ret))
+		if (!ft_malloc_p(sizeof(char) * (n + 1), (void **)ret))
 			return (0);
 		r = *ret;
 		s = str + start;
@@ -35,7 +35,7 @@ int	get_substr(char *str, size_t start, size_t n, char **ret)
 		*r = '\0';
 	}
 	if (to_end)
-		malloc_free_p(0, (void **)&str);
+		ft_free_p((void **)&str);
 	return (1);
 }
 
@@ -45,7 +45,7 @@ int	get_substr(char *str, size_t start, size_t n, char **ret)
 // inserted in the list the psh_app value will represent the chunk len.
 int	gdl_insert(t_gdl **dlst, t_gdl **elem, char *str, size_t psh_app)
 {
-	if (!malloc_free_p(sizeof(t_gdl), (void **)elem))
+	if (!ft_malloc_p(sizeof(t_gdl), (void **)elem))
 		return (0);
 	(*elem)->prev = NULL;
 	(*elem)->next = NULL;
@@ -84,13 +84,13 @@ int	join_clear_list(char *line, t_gdl **elem)
 		if (line && s)
 			while (*s)
 				*(line++) = *(s++);
-		malloc_free_p(0, (void **)&((*elem)->str));
+		ft_free_p((void **)&((*elem)->str));
 		if (!((*elem)->prev))
 			break ;
 		*elem = (*elem)->prev;
-		malloc_free_p(0, (void **)&((*elem)->next));
+		ft_free_p((void **)&((*elem)->next));
 	}
-	malloc_free_p(0, (void **)elem);
+	ft_free_p((void **)elem);
 	return (1);
 }
 
@@ -106,7 +106,7 @@ char	*gather_line(t_gdl **chks)
 	if (!(elem->next))
 	{
 		line = elem->str;
-		malloc_free_p(0, (void **)chks);
+		ft_free_p((void **)chks);
 		return (line);
 	}
 	total_len = elem->n;
@@ -115,7 +115,7 @@ char	*gather_line(t_gdl **chks)
 		elem = elem->next;
 		total_len += elem->n;
 	}
-	if (!malloc_free_p(sizeof(char) * (total_len + 1), (void **)(&line))
+	if (!ft_malloc_p(sizeof(char) * (total_len + 1), (void **)(&line))
 		|| !join_clear_list(line, &elem))
 		return ((char *)E_MLC);
 	line[total_len] = '\0';

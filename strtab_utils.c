@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 04:23:34 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 18:46:31 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:27:51 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	*strtab_clear(char ***tab)
 	t = *tab;
 	t--;
 	while (*(++t))
-		malloc_free_p(0, (void **)t);
-	malloc_free_p(0, (void **)tab);
+		ft_free_p((void **)t);
+	ft_free_p((void **)tab);
 	return (NULL);
 }
 

@@ -6,26 +6,29 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:45:39 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 20:42:32 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/10 22:34:36 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*varr_clear(t_varr **va)
-{
-	if (!va)
-		return (NULL);
-	malloc_free_p(0, (void **)&((*va)->arr));
-	malloc_free_p(0, (void **)va);
-	return (NULL);
-}
-
-t_varr	*varr_copy(t_varr *src)
+void	*varr_clear(t_varr **va_p)
 {
 	t_varr	*va;
 
-	ft_printf("varr_copy : trying to copy src %p with len %d\n", src, src->len);
+	if (!va_p || !(*va_p))
+		return (NULL);
+	va = *va_p;
+	ft_printf("varr_clear : clearing t_varr **va %p, and *va %p\n", va_p, va);
+	ft_free_p((void **)&va->arr);
+	ft_free_p((void **)va_p);
+	return (NULL);
+}
+
+t_varr	*varr_copy(t_varr *src, t_varr **ret)
+{
+	t_varr	*va;
+
 	va = varr_create(src->len);
 	if (!va)
 		return (NULL);
@@ -34,6 +37,8 @@ t_varr	*varr_copy(t_varr *src)
 	va->__max_len = src->__max_len;
 	va->__cur_size = src->__cur_size;
 	ft_memcpy(va->arr, src->arr, src->len * sizeof(int));
+	if (ret)
+		*ret = va;
 	return (va);
 }
 
@@ -43,6 +48,8 @@ void	varr_print(t_varr *va)
 
 	if (!va)
 		return ;
+	if (!va->arr)
+		fperror("ERROR : varr_print : t_varr *va given but its array is NULL.");
 	if (!va->len)
 		ft_printf("[ ]\n");
 	else if (va->len == 1)

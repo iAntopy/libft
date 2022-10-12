@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:53:26 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/09/03 16:44:55 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:20:46 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!s)
 		return (NULL);
 	len = ft_strlen(s);
-	if (!malloc_free_p(sizeof(char) * (len + 1), (void **)&mstr))
+	if (!ft_malloc_p(sizeof(char) * (len + 1), (void **)&mstr))
 		return (NULL);
 	i = -1;
 	while (++i < len)

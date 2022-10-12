@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:55:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/07 15:30:05 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:16:32 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ char	**ft_split_set(char const *s, char *set)
 	if (!s)
 		return (NULL);
 	wcount = word_counter(s, set);
-	if (!malloc_free_p(sizeof(char *) * (wcount + 1), (void **)&tab))
+	if (!ft_calloc_p(sizeof(char *) * (wcount + 1), (void **)&tab))
 		return (NULL);
-	ft_memclear(tab, sizeof(char *) * (wcount + 1));
 	if (word_splitter(tab, s, set) <= 0)
 		return (strtab_clear(&tab));
 	return (tab);

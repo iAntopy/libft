@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:54:31 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/28 05:48:16 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:22:01 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*return_empty_str(void)
 {
 	char	*ptr;
 
-	if (!malloc_free_p(sizeof(char), (void **)&ptr))
+	if (!ft_malloc_p(sizeof(char), (void **)&ptr))
 		return (NULL);
 	ptr[0] = '\0';
 	return (ptr);
@@ -37,7 +37,7 @@ char	*ft_substr(char const *str, unsigned int start, size_t n)
 	str += start;
 	if (n < str_len)
 		str_len = n;
-	if (!malloc_free_p(sizeof(char) * (str_len + 1), (void **)&dup))
+	if (!ft_malloc_p(sizeof(char) * (str_len + 1), (void **)&dup))
 		return (NULL);
 	d = dup;
 	while (str_len--)

@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/09 04:39:33 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 17:58:51 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int		ft_randint(int min, int range);
 
 int		malloc_free_p(size_t size, void **ptr);
 int		ft_malloc_p(size_t size, void **ptr);
+int		ft_calloc_p(size_t size, void **ptr);
 int		ft_free_p(void **ptr);
 void	*malloc_free(size_t size, void **ptr);
 
@@ -211,7 +212,7 @@ typedef struct s_variable_len_array
 
 t_varr	*varr_create(size_t size);
 void	*varr_clear(t_varr **va);
-t_varr	*varr_copy(t_varr *va);
+t_varr	*varr_copy(t_varr *va, t_varr **ret);
 t_varr	*varr_append(t_varr *va, int nb);
 t_varr	*varr_concatenate(t_varr *dst, t_varr *va);
 t_varr	*varr_remove_idx(t_varr *va, size_t idx);
