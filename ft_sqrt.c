@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 18:59:29 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/05 19:02:26 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/04 19:14:00 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define MAX_SQRT_ITERS 20
 
 //Newton-Raphson methode with max 20 iterations.
-int	ft_sqrt(const int nb)
+static int	_sqrt(const int nb)
 {
 	int	i;
 	int	guess;
@@ -22,13 +22,11 @@ int	ft_sqrt(const int nb)
 	int	delta_guess;
 	int	delta_best_guess;
 
-	if (nb < 0)
-		return (0);
-	i = -1;
+	i = 0;
 	guess = 1;
 	best_guess = 1;
 	delta_best_guess = ft_abs(nb - guess);
-	while (++i < MAX_SQRT_ITERS)
+	while (i < MAX_SQRT_ITERS)
 	{
 		guess = (guess + (nb / guess)) / 2;
 		if (guess * guess == nb)
@@ -39,8 +37,16 @@ int	ft_sqrt(const int nb)
 			best_guess = guess;
 			delta_best_guess = delta_guess;
 		}
+		i++;
 	}
 	return (best_guess);
+}
+
+int	ft_sqrt(const int nb)
+{
+	if (nb < 0)
+		return (0);
+	return (_sqrt(nb));
 }
 /*
 int	main()

@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:54:05 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/12 18:21:07 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:45:40 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static char	*return_empty_str(void)
 {
 	char	*empty;
 
+	empty = NULL;
 	if (!ft_malloc_p(sizeof(char), (void **)&empty))
 		return (NULL);
 	empty[0] = '\0';

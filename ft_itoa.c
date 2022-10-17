@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:45:28 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/12 18:19:51 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:33:59 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*ft_itoa(int n)
 
 	if (n == 0)
 		return (get_zero());
+	nstr = NULL;
 	nb = n;
 	is_neg = (n < 0);
 	size = ft_log10(n) + is_neg;

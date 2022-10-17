@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 05:57:42 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/12 18:27:36 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/12 19:02:23 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	*ft_calloc(size_t n, size_t s)
 	if (s > (SIZE_MAX / n))
 		return (NULL);
 	mem_size = n * s;
+	ptr = NULL;
 	if (!ft_malloc_p(mem_size, (void **)&ptr))
 		return (NULL);
 	ft_memclear(ptr, mem_size);
@@ -34,6 +35,7 @@ int	ft_calloc_p(size_t size, void **ret)
 
 	if (!ret || !size)
 		return (0);
+	ptr = NULL;
 	if (!ft_malloc_p(size, (void **)&ptr))
 		return (0);
 	ft_memclear(ptr, size);

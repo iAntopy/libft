@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:48:33 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/12 18:15:33 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:35:56 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*elem;
 
+	elem = NULL;
 	if (!ft_malloc_p(sizeof(t_list), (void **)&elem))
 		return (NULL);
 	elem->content = content;

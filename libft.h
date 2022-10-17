@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 16:20:53 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/12 17:58:51 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/15 06:08:22 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,10 +218,11 @@ t_varr	*varr_concatenate(t_varr *dst, t_varr *va);
 t_varr	*varr_remove_idx(t_varr *va, size_t idx);
 t_varr	*varr_remove(t_varr *va, int value);
 void	varr_print(t_varr *va);
+void	varr_eprint(t_varr *va);
 int		varr_pop(t_varr *va, int *ret);
 int		varr_pop_front(t_varr *va, int *ret);
 int		varr_sum(t_varr *va);
-int		arr_max(t_varr *va);
+int		varr_max(t_varr *va);
 int		varr_min(t_varr *va);
 int		*varr_max_p(t_varr *va);
 int		*varr_min_p(t_varr *va);

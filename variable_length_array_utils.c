@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 22:45:39 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/10 22:34:36 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/16 19:53:25 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void	*varr_clear(t_varr **va_p)
 {
 	t_varr	*va;
 
-	if (!va_p || !(*va_p))
+	if (!va_p)
 		return (NULL);
 	va = *va_p;
-	ft_printf("varr_clear : clearing t_varr **va %p, and *va %p\n", va_p, va);
-	ft_free_p((void **)&va->arr);
+	if (!va)
+		return (NULL);
+	if (va->arr)
+		ft_free_p((void **)&va->arr);
 	ft_free_p((void **)va_p);
 	return (NULL);
 }
@@ -61,5 +63,27 @@ void	varr_print(t_varr *va)
 		while (++i < (va->len - 1))
 			ft_printf("%d, ", va->arr[i]);
 		ft_printf("%d ] \n", va->arr[i]);
+	}
+}
+
+void	varr_eprint(t_varr *va)
+{
+	size_t	i;
+
+	if (!va)
+		return ;
+	if (!va->arr)
+		fperror("ERROR : varr_print : t_varr *va given but its array is NULL.");
+	if (!va->len)
+		ft_eprintf("[ ]\n");
+	else if (va->len == 1)
+		ft_eprintf("[ %d ]\n", va->arr[0]);
+	else
+	{
+		ft_eprintf("[ ");
+		i = -1;
+		while (++i < (va->len - 1))
+			ft_eprintf("%d, ", va->arr[i]);
+		ft_eprintf("%d ] \n", va->arr[i]);
 	}
 }

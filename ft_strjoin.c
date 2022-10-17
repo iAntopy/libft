@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:55:28 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/04/14 15:00:25 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/16 22:49:09 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	jstr = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!jstr)
+	jstr = NULL;
+	if (!ft_malloc_p(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1),
+			(void **)&jstr))
 		return (NULL);
 	j = jstr;
 	while (*s1)
