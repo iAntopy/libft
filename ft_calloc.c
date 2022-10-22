@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 05:57:42 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/12 19:02:23 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/21 23:38:10 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,17 @@ int	ft_calloc_p(size_t size, void **ret)
 	*ret = ptr;
 	return (1);
 }
+/*
+int	main()
+{
+	char	*str;
+	char	*str2;
+
+	str = ft_calloc(30, 1);
+	str2 = calloc(30, 1);
+
+	write(2, str, 30);
+	write(1, str2, 30);
+	return (0);
+}
+*/

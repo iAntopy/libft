@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:49:29 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/21 18:11:51 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/21 22:30:23 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	unsigned char	*dpc;
 	unsigned char	*spc;
 
+	if (!dest || !src)
+		return (NULL);
 	dp = (size_t *)dest;
 	sp = (size_t *)src;
 	while (n >= sizeof(size_t))
