@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 16:32:36 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/07/14 16:40:05 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/24 18:24:11 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_memclear(void *dest, size_t size)
 		*(p++) = 0;
 		size -= sizeof(size_t);
 	}
+	c = (unsigned char *)p;
 	while (size)
 	{
 		*(c++) = 0;

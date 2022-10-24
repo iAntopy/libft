@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:45:28 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/16 22:33:59 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/24 18:27:19 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static char	*get_zero(void)
 {
 	char	*nstr;
 
+	nstr = NULL;
 	if (!ft_malloc_p(sizeof(char) * 2, (void **)&nstr))
 		return (NULL);
 	nstr[0] = '0';
@@ -54,11 +55,11 @@ char	*ft_itoa(int n)
 
 	if (n == 0)
 		return (get_zero());
-	nstr = NULL;
 	nb = n;
 	is_neg = (n < 0);
 	size = ft_log10(n) + is_neg;
-	if (!ft_malloc_p(sizeof(char) * (size + 1), (void **)&nstr))
+	nstr = NULL;
+	if (!ft_calloc_p(sizeof(char) * (size + 1), (void **)&nstr))
 		return (NULL);
 	if (is_neg)
 	{
@@ -66,6 +67,5 @@ char	*ft_itoa(int n)
 		nb *= -1;
 	}
 	ft_writenbr(nstr + size, nb);
-	nstr[size] = '\0';
 	return (nstr);
 }

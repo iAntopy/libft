@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:39:24 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/06/07 17:40:27 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/24 18:34:33 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_atoi(const char *str)
 {
-	unsigned long long int	nb;
-	int						sign;
+	size_t	nb;
+	int		sign;
 
 	nb = 0;
 	sign = 1;
