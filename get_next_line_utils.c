@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:15:10 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/12 18:28:13 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/10/27 16:52:09 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -26,6 +26,7 @@ int	get_substr(char *str, size_t start, size_t n, char **ret)
 			r++;
 	if (n)
 	{
+		*ret = NULL;
 		if (!ft_malloc_p(sizeof(char) * (n + 1), (void **)ret))
 			return (0);
 		r = *ret;

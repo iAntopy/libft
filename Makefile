@@ -7,7 +7,7 @@ FUNC_NAMES_M =	issign isspace isalpha isdigit isalnum isascii			\
 		calloc strlcat substr strjoin strtrim strdup			\
 		split split_set split_space					\
 		strmapi striteri						\
-		putchar_fd putstr_fd putendl_fd putnbr_fd			\
+		putchar_fd putstr_fd putendl_fd putnbr_fd putnbr_buff	\
 		pow abs sqrt							\
 		strlower strupper
 			
