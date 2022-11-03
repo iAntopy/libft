@@ -6,17 +6,23 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:27:59 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/03 00:16:36 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/03 05:29:11 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef THREAD_POOL_H
 # define THREAD_POOL_H
 
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
 # include <pthread.h>
 # include <fcntl.h>
 # include <semaphore.h>
-# include "libft.h"
+
+# define X_BASE "0123456789abcdef"
+# define XX_BASE "0123456789ABCDEF"
+# define DEC_BASE "0123456789"
 
 # define THPOOL_MAX 32
 # define THPOOL_SEM_NAME_BASE "._sem"
@@ -73,15 +79,25 @@ int		thpool_submit(t_thpool *tp, int (*task)(void *, void *), void *args, void *
 int		thpool_destroy(t_thpool *tp, int print_status_at_exit);
 
 /// TASK QUEUE UTILS ///////
-ssize_t	thpool_task_queue_len(t_task **tlst);
+ssize_t	thpool_task_queue_len(t_task *tlst);
 int		thpool_task_push_front(t_task **tlst, t_task *tsk);
 int		thpool_task_push_back(t_task **tlst, t_task *tsk);
 int		thpool_task_pop_front(t_task **tlst, t_task **ret);
 int		thpool_task_pop_back(t_task **tlst, t_task **ret);
 int		thpool_task_clear(t_task **tlst);
 
+/// LIBFT UTILS //////
+void	ft_memclear(void *p, size_t size);
+size_t	ft_strlcpy(char *dest, const char *src, size_t buff_size);
+int	ft_putnbr_buff(char *dest, ssize_t nb);
+int	ft_calloc_p(size_t size, void **ret_p);
+int	ft_free_p(void **ptr);
+int	ft_printf(const char *fmt, ...);
+int	ft_eprintf(const char *fmt, ...);
+
 /// PRINT FUNCS //////
 void	thpool_print_status(t_thpool *tp);
+void	thpool_print_pre_closure_status(t_thpool *tp);
 
 /// ERROR HANDLING ///////
 int		repport_thpool_init_failed(int code, pthread_mutex_t *del_lock, int ws);

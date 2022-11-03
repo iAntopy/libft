@@ -6,35 +6,29 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:06:40 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/03 00:22:26 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/03 04:49:57 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "thread_pool.h"
 
-ssize_t	thpool_task_queue_len(t_task **tlst)
+ssize_t	thpool_task_queue_len(t_task *tlst)
 {
 	size_t	len;
-	t_task	*t;
 
 	if (!tlst)
-		return (-1);
-	if (!*tlst)
 		return (0);
 	len = 1;
-	t = *tlst;
-	while (t->next)
+	while (tlst->next)
 	{
 		len++;
-		t = t->next;
+		tlst = tlst->next;
 	}
 	return (len);
 }
 
 int	thpool_task_push_front(t_task **tlst, t_task *tsk)
 {
-	t_task	*t;
-
 	if (!tlst || !tsk)
 		return (repport_thpool_task_op_failed(TPE_QUEUE_INPUTS));
 	if (*tlst)

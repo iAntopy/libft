@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   thread_pool_init.c                                 :+:      :+:    :+:   */
+/*   thpool_api.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:44:31 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/03 00:22:21 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/03 05:58:53 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "thread_pool.h"
+
+int	thpool_sentinel(void *args, void *ret)
+{
+	(void)args;
+	(void)ret;
+	return (0);
+}
 
 int	thpool_destroy(t_thpool *tp, int print_status_at_exit)
 {
@@ -19,12 +26,12 @@ int	thpool_destroy(t_thpool *tp, int print_status_at_exit)
 	if (!tp)
 		return (-1);
 	if (print_status_at_exit)
-		thpool_print_status(tp);
+		thpool_print_pre_closure_status(tp);
 	i = -1;
 	while (++i < tp->nb_workers)
 	{
 		tp->_quit_requested[i] = 1;
-		thpool_submit(tp, NULL, NULL, NULL);
+		thpool_submit(tp, thpool_sentinel, NULL, NULL);
 	}
 	usleep(30000);
 	i = -1;
@@ -34,7 +41,9 @@ int	thpool_destroy(t_thpool *tp, int print_status_at_exit)
 	pthread_mutex_destroy(&tp->queue_mutex);
 	pthread_mutex_destroy(&tp->failed_mutex);
 	pthread_mutex_destroy(&tp->print_mutex);
+	sem_close(tp->task_sem);
 	sem_unlink(tp->sem_name);
+	tp->task_sem = NULL;
 	thpool_task_clear(&tp->task_queue);
 	thpool_task_clear(&tp->failed_tasks);
 	return (0);
@@ -47,26 +56,29 @@ static void	*task_handler(void *thpool_p)
 	int			id;
 
 	tp = (t_thpool *)thpool_p;
-	if (!thpool_p)
-		return (repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_INPUTS, id));
-	tp->nb_workers++;
+	if (!tp)
+		return (repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_INPUTS, -1));
 	id = tp->nb_available++;
+	tp->nb_workers++;
 	sem_wait(tp->task_sem);
 	while (!tp->_quit_requested[id])
 	{
 		pthread_mutex_lock(&tp->queue_mutex);
 		if (thpool_task_pop_front(&tp->task_queue, &tsk))
 			break ;
-		tsk->ticket_nb = tp->ticket_counter++;
 		pthread_mutex_unlock(&tp->queue_mutex);
-		if (!tsk || !tsk->task_f)
+		if (!tsk || !tsk->task_f || (tsk->task_f == thpool_sentinel))
 		{
-			tp->_isbroken_threads[id] = 1;
 			ft_free_p((void **)&tsk);
-			repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_NO_TASK, id);
+			if (tsk->task_f != thpool_sentinel)
+			{
+				tp->_isbroken_threads[id] = 1;
+				repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_NO_TASK, id);
+			}
 			break ;
 		}
 		tp->nb_available--;
+		tsk->ticket_nb = tp->ticket_counter++;
 		if (tsk->task_f(tsk->args, tsk->ret_p) != 0)
 		{
 			tsk->has_failed = 1;
@@ -74,6 +86,7 @@ static void	*task_handler(void *thpool_p)
 			pthread_mutex_lock(&tp->failed_mutex);
 			thpool_task_push_front(&tp->failed_tasks, tsk);				
 			pthread_mutex_unlock(&tp->failed_mutex);
+			break ;
 		}
 		tp->nb_available++;
 		ft_free_p((void **)&tsk);
@@ -89,24 +102,20 @@ int	thpool_submit(t_thpool *tp, int (*task)(void *, void *), void *args, void *r
 {
 	t_task	*tsk;
 
-	printf("submit entered\n");
+//	printf("submit entered\n");
 	if (!tp)
 		return (repport_thpool_submit_failed(&tp->print_mutex, TPE_SUBMIT_INPUTS));
-	printf("submit tp check\n");
+//	printf("submit tp check\n");
 	if (!ft_calloc_p(sizeof(t_task), (void **)&tsk))
 		return (repport_thpool_submit_failed(&tp->print_mutex, TPE_SUBMIT_MALLOC));
-	printf("submit calloc check\n");
+//	printf("submit calloc check\n");
 	tsk->task_f = task;
 	tsk->args = args;
 	tsk->ret_p = ret;
 	if (thpool_task_push_back(&tp->task_queue, tsk) < 0)
-	{
-		ft_free_p((void **)&tsk);
-		printf("submit push back failed\n");
-		return (-1);
-	}
+		return (ft_free_p((void **)&tsk) - 1);
 	sem_post(tp->task_sem);
-	printf("submit SUCCESS\n");
+//	printf("submit SUCCESS\n");
 	return (0);
 }
 
