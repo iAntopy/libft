@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:27:59 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/03 05:29:11 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:40:24 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_thread_pool
 	char			is_running;
 	int				nb_workers;
 	int				nb_available;
+	int				nb_finished;
 	int				__thpool_id;
 	char			sem_name[32];
 	pthread_t		_threads[THPOOL_MAX];
