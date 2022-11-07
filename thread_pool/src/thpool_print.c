@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:11:48 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/03 18:28:29 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/07 03:45:15 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	thpool_print_bool_array(char *bools, int n)
 static void	generic_print_status(t_thpool *tp)
 {
 	static const char	*bools[2] = {"false", "true"};
-	
+
 	ft_printf("o-	o- pool is running :\t\t%s\n", bools[(int)tp->is_running]);
 	ft_printf("o-	o- total workers :\t\t%d\n", tp->nb_workers);
 	ft_printf("o-	o- available workers :\t\t%d\n", tp->nb_available);
@@ -44,7 +44,6 @@ static void	generic_print_status(t_thpool *tp)
 	ft_printf("o-	o- tasks in queue :\t\t%d\n", thpool_task_queue_len(tp->task_queue));
 	ft_printf("o-	o- total failed tasks :\t\t%z\n", tp->failed_tasks_counter);
 	ft_printf("o-	o- total tickets serviced :\t%z\n", tp->ticket_counter);
-
 }
 
 void	thpool_print_status(t_thpool *tp)

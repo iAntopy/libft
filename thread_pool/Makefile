@@ -1,9 +1,11 @@
 
 SRC_DIR		= src/
 
-_SRC		:=	thpool_api.c			\
+_SRC		:=	thpool_init.c			\
+			thpool_submit.c			\
+			thpool_destroy.c		\
+			thpool_task_handler.c		\
 			thpool_task_queue_utils.c	\
-			thpool_task_queue_utils2.c	\
 			thpool_print.c			\
 			thpool_error_handling.c 	\
 			ft_utils.c			\

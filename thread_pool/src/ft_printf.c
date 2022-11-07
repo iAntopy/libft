@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 15:23:57 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/03 04:45:02 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/07 03:46:08 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ static void	ft_printstr(const char *str, size_t *count)
 		while (*str)
 			*count += write(1, str++, 1);
 }
-
-
-
 
 static void	print_flag(char flag, va_list *ap, size_t *count)
 {

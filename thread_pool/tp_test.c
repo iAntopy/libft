@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/03 20:42:25 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:15:33 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	main(int argc, char **argv)
 	thpool_print_status(&tp);
 	while (tp.is_running && thpool_task_queue_len(tp.task_queue))
 	{
-		usleep(3000000);
+		usleep(1000000);
 		thpool_print_status(&tp);
 	}
 	printf("CLOSING THREAD POOL !!\n");
