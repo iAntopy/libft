@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:02:01 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/05 21:44:36 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/10 23:00:45 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	repport_thpool_init_failed(int code, int ws)
 int	repport_thpool_submit_failed(pthread_mutex_t *lock, int code)
 {
 	pthread_mutex_lock(lock);
-	if (code == TPE_SUBMIT_INPUTS)
+	if (code == TPE_SBMT_INPTS)
 		ft_eprintf("\t[-> thread pool error : submit task missing inputs <-]\n");
-	else if (code == TPE_SUBMIT_MALLOC)
+	else if (code == TPE_SBMT_MLC)
 		ft_eprintf("\t[-> thread pool error : submit task malloc failed <-]\n");
 	pthread_mutex_unlock(lock);
 	return (-1);
@@ -43,10 +43,8 @@ int	repport_thpool_submit_failed(pthread_mutex_t *lock, int code)
 
 int	repport_thpool_task_op_failed(int code)
 {
-	if (code == TPE_QUEUE_INPUTS)
+	if (code == TPE_QUEUE_INPTS)
 		ft_eprintf("\t[-> thread pool error : queue operation missing inputs <-]\n");
-	else if (code == TPE_SUBMIT_MALLOC)
-		ft_eprintf("\t[-> thread pool error : submit task malloc failed <-]\n");
 	return (-1);
 }
 
@@ -55,7 +53,7 @@ void	*repport_thpool_thread_failed(pthread_mutex_t *lock, int code, int id)
 	pthread_mutex_lock(lock);
 	if (code == TPE_THREAD_NO_TASK)
 		ft_eprintf("\t[-> thread pool error : executing task missing func ptr. Thread %d shuts down <-]\n", id);
-	else if (code == TPE_THREAD_INPUTS)
+	else if (code == TPE_THREAD_INPTS)
 		ft_eprintf("\t[-> thread pool error : worker thread missing thpool ptr <-]\n");
 	pthread_mutex_unlock(lock);
 	return (NULL);

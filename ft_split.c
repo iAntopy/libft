@@ -6,26 +6,21 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 15:55:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/10/24 18:05:51 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:01:27 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	word_counter(char const *s, char c)
+static int	word_counter(const char *s, char c)
 {
-	int	wcount;
+	int		wcount;
 
-	wcount = 0;
-	while (*s)
-	{
-		while (*s && (*s == c))
-			s++;
-		while (*s && (*s != c))
-			s++;
-		if (*(s - 1) != c)
-			wcount++;
-	}
+	if (*s == '\0')
+		return (0);
+	wcount = *s != c;
+	while (*(++s))
+		wcount += (*(s - 1) == c) && (*s != c);
 	return (wcount);
 }
 
@@ -75,7 +70,9 @@ int	main(int argc, char **argv)
 	char	del = 'a';
 	char	**tab;
 
-	tab = ft_split(str, del);
+	if (argc < 2)
+		return (1);
+	tab = ft_split(argv[1], ' ');
 	if (!tab)
 	{
 		ft_printf("tab is NULL \n");

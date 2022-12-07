@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:33:28 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/07 03:47:20 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:57:07 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	thpool_init(t_thpool *tp, int nb_workers)
 	while (++i < nb_workers)
 		if (pthread_create(tp->_threads + i, NULL, __task_handler, tp)
 			|| usleep(10000))
-			return (clear_failed_init(tp, TPE_INIT_THREAD));
+			return (clear_failed_init(tp, TPE_INIT_THRD));
 	ft_printf("thpool init : all threads started\n");
 	tp->is_running = 1;
 	return (0);

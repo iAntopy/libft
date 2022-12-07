@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:27:59 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/07 02:57:04 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/10 23:00:55 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ enum	e_err_codes
 	TPE_INIT_MUTEX,
 	TPE_INIT_SEM,
 	TPE_INIT_TASK_POOL,
-	TPE_INIT_THREAD,
-	TPE_SUBMIT_INPUTS,
-	TPE_SUBMIT_MALLOC,
-	TPE_QUEUE_INPUTS,
-	TPE_THREAD_INPUTS,
+	TPE_INIT_THRD,
+	TPE_SBMT_INPTS,
+	TPE_SBMT_MLC,
+	TPE_QUEUE_INPTS,
+	TPE_THREAD_INPTS,
 	TPE_THREAD_NO_TASK,
-	TPE_THREAD_NO_TASK_FUNC
+	TPE_THREAD_NO_FUNC
 };
 
 typedef int (* t_task_func)(void *, void *);
@@ -82,6 +82,7 @@ typedef struct	s_thread_pool
 							// to accelerate submission of tasks.
 	t_task			*failed_tasks;
 	size_t			failed_tasks_counter;
+	size_t			completed_tasks_counter;
 	size_t			ticket_counter;
 }	t_thpool;
 
@@ -92,7 +93,7 @@ int		thpool_destroy(t_thpool *tp, int print_status_at_exit);
 
 /// THREAD POOL UTILS /////
 void	*__task_handler(void *tp);
-int	__sentinel(void *nil, void *null);
+int		__sentinel(void *nil, void *null);
 
 /// TASK QUEUE UTILS ///////
 ssize_t	thpool_task_queue_len(t_task *tlst);
@@ -105,14 +106,18 @@ int		thpool_tasks_clear(t_task **tlst, t_task **last);
 /// LIBFT UTILS //////
 void	ft_memclear(void *p, size_t size);
 size_t	ft_strlcpy(char *dest, const char *src, size_t buff_size);
-int	ft_putnbr_buff(char *dest, ssize_t nb);
-int	ft_calloc_p(size_t size, void **ret_p);
-int	ft_free_p(void **ptr);
-int	ft_printf(const char *fmt, ...);
-int	ft_eprintf(const char *fmt, ...);
+int		ft_putnbr_buff(char *dest, ssize_t nb);
+int		ft_calloc_p(size_t size, void **ret_p);
+int		ft_free_p(void **ptr);
+int		ft_printf(const char *fmt, ...);
+int		ft_eprintf(const char *fmt, ...);
+int		ft_vprintf(const char *fmt, va_list *va);
 
 /// PRINT FUNCS //////
+void	thpool_printf(t_thpool *tp, const char *fmt, ...);
 void	thpool_print_status(t_thpool *tp);
+void	thpool_print_current_tasks(t_thpool *tp);
+void	thpool_print_failed_tasks(t_thpool *tp);
 void	thpool_print_pre_closure_status(t_thpool *tp);
 
 /// ERROR HANDLING ///////

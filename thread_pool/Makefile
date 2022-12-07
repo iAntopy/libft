@@ -11,7 +11,8 @@ _SRC		:=	thpool_init.c			\
 			ft_utils.c			\
 			malloc_free.c			\
 			ft_printf.c			\
-			ft_eprintf.c
+			ft_eprintf.c		\
+			ft_vprintf.c
 
 SRCS		= $(addprefix $(SRC_DIR), $(_SRC))
 

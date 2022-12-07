@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 23:52:17 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/07 03:48:18 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/10 23:29:32 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ static t_task	*gather_new_task(t_thpool *tp, int id)
 
 	tsk = NULL;
 	pthread_mutex_lock(&tp->queue_mutex);
-	ft_printf("popping task from front of list at : %p\n", tp->task_queue);
 	thpool_task_pop_front(&tp->task_queue, &tp->last_task, &tsk);
 	if (tsk)
 	{
 		tsk->processing_thread = tp->_threads[id];
 		tsk->ticket_nb = tp->ticket_counter;
-		ft_printf("popped task %p from front of list\n", tsk);
 	}
 	pthread_mutex_unlock(&tp->queue_mutex);
 	return (tsk);
@@ -43,11 +41,12 @@ static t_task	*gather_new_task(t_thpool *tp, int id)
 
 static void	try_execute_task(t_thpool *tp, t_task *tsk)
 {
-	if (tsk->task_f)
+	if (tsk->task_f == __sentinel)
+		tsk->exit_code = 0;
+	else if (tsk->task_f)
 		tsk->exit_code = tsk->task_f(tsk->args, tsk->ret_p);
 	else
-		tsk->exit_code = TPE_THREAD_NO_TASK_FUNC;
-	tsk->ticket_nb = tp->ticket_counter;
+		tsk->exit_code = TPE_THREAD_NO_FUNC;
 	if (tsk->exit_code != 0)
 	{
 		pthread_mutex_lock(&tp->failed_mutex);
@@ -55,9 +54,13 @@ static void	try_execute_task(t_thpool *tp, t_task *tsk)
 		thpool_task_push_front(&tp->failed_tasks, NULL, tsk);
 		pthread_mutex_unlock(&tp->failed_mutex);
 	}
-	pthread_mutex_lock(&tp->task_pool_mutex);
-	thpool_task_push_front(&tp->task_pool, NULL, tsk);
-	pthread_mutex_unlock(&tp->task_pool_mutex);
+	else
+	{
+		pthread_mutex_lock(&tp->task_pool_mutex);
+		tp->completed_tasks_counter += (tsk->task_f != __sentinel);
+		thpool_task_push_front(&tp->task_pool, NULL, tsk);
+		pthread_mutex_unlock(&tp->task_pool_mutex);
+	}
 }
 
 void	*__task_handler(void *thpool_p)
@@ -68,17 +71,16 @@ void	*__task_handler(void *thpool_p)
 
 	tp = (t_thpool *)thpool_p;
 	if (!tp)
-		return (repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_INPUTS, -1));
+		return (repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_INPTS, -1));
 	id = tp->nb_available;
 	tp->nb_workers++;
 	while (tp_ctrler(tp, 1, 0, 0) && sem_wait(tp->task_sem) == 0 && !tp->_quit_requested[id])
 	{
 		tsk = gather_new_task(tp, id);
-		if (!tsk || tsk->task_f == __sentinel)
+		if (!tsk)
 		{
-			if (!tsk)
-				repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_NO_TASK, id);
-			tp->_isbroken_threads[id] = !tsk;
+			repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_NO_TASK, id);
+			tp->_isbroken_threads[id] = 1;
 			ft_free_p((void **)&tsk);
 			break ;
 		}

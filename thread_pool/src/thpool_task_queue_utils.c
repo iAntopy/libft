@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:06:40 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/07 03:44:35 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/10 22:56:36 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int	thpool_tasks_clear(t_task **tlst, t_task **last)
 	t_task	*ret;
 
 	if (!tlst)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPUTS));
+		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	while (*tlst)
 	{
 		thpool_task_pop_front(tlst, NULL, &ret);
+		ft_printf("task clear : freeing one task %p\n", ret);
 		ft_free_p((void **)&ret);
 	}
 	*tlst = NULL;
@@ -47,11 +48,14 @@ ssize_t	thpool_task_queue_len(t_task *tlst)
 int	thpool_task_push_front(t_task **tlst, t_task **last, t_task *tsk)
 {
 	if (!tlst || !tsk)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPUTS));
+		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	if (*tlst)
 		tsk->next = *tlst;
 	else if (last && !(*tlst))
+	{
+		tsk->next = NULL;
 		*last = tsk;
+	}
 	*tlst = tsk;
 	return (0);
 }
@@ -59,7 +63,7 @@ int	thpool_task_push_front(t_task **tlst, t_task **last, t_task *tsk)
 int	thpool_task_push_back(t_task **tlst, t_task **last, t_task *tsk)
 {
 	if (!tlst || !last || !tsk)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPUTS));
+		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	tsk->next = NULL;
 	if (!(*tlst))
 		*tlst = tsk;
@@ -74,36 +78,12 @@ int	thpool_task_pop_front(t_task **tlst, t_task **last, t_task **ret)
 	t_task	*t;
 
 	if (!tlst || !*tlst || !ret)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPUTS));
+		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	t = *tlst;
-	*ret = t;
 	*tlst = t->next;
+	*ret = t;
 	t->next = NULL;
-	if (last && !(*tlst))
+	if (last && *last && !(*tlst))
 		*last = NULL;
 	return (0);
 }
-/*
-int	thpool_task_pop_back(t_task **tlst, t_task **ret)
-{
-	t_task	*t;
-
-	if (!tlst || !*tlst || !last || !ret)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPUTS));
-	t = *tlst;
-	if (!t->next)
-	{
-		*ret = *tlst;
-		*tlst = NULL;
-	}
-	else
-	{
-		while (t->next->next)
-			t = t->next;
-		*ret = t->next;
-		t->next = NULL;
-	}
-	(*ret)->next = NULL;
-	return (0);
-}
-*/

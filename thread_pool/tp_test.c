@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:21:00 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/05 18:15:33 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/11/10 23:20:45 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ int	test_task2(void *args, void *ret)
 	
 	args = NULL;
 	ret_s = (char **)ret;
-	printf("FAIL ...");
+	printf("FAIL ... ret : %p\n", ret);
 	usleep(1000000);
 	printf("URE !\n");
-	r = strdup("FAILED");
-	*ret_s = r;
+	if (ret)
+	{
+		r = strdup("FAILED");
+		*ret_s = r;
+	}
 	return (1);
 }
 
@@ -62,7 +65,7 @@ int	main(int argc, char **argv)
 	
 	printf("thread pool is running ? %d\n", tp.is_running);
 	while (nb_tasks--)
-		thpool_submit(&tp, test_task1, ids + (nb_tasks % 4), NULL);
+		thpool_submit(&tp, test_task2, ids + (nb_tasks % 4), NULL);
 	printf("thpool : all tasks submited\n");
 
 //	printf("Pushing 2 failing tasks\n");
@@ -71,11 +74,14 @@ int	main(int argc, char **argv)
 //	thpool_submit(&tp, test_task2, NULL, failed_returns + 1);
 	usleep(500000);
 	thpool_print_status(&tp);
-	while (tp.is_running && thpool_task_queue_len(tp.task_queue))
+	while (tp.is_running && tp.nb_available < tp.nb_workers)
 	{
 		usleep(1000000);
 		thpool_print_status(&tp);
 	}
+	printf("tp test : IS_RUNNING WHILE OVER !");
+	thpool_print_current_tasks(&tp);
+	thpool_print_failed_tasks(&tp);
 	printf("CLOSING THREAD POOL !!\n");
 	thpool_destroy(&tp, 1);
 	usleep(1000000);
