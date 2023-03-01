@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:06:40 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/10 22:56:36 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:56:19 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	thpool_tasks_clear(t_task **tlst, t_task **last)
 	t_task	*ret;
 
 	if (!tlst)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
+		return (report_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	while (*tlst)
 	{
 		thpool_task_pop_front(tlst, NULL, &ret);
@@ -48,7 +48,7 @@ ssize_t	thpool_task_queue_len(t_task *tlst)
 int	thpool_task_push_front(t_task **tlst, t_task **last, t_task *tsk)
 {
 	if (!tlst || !tsk)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
+		return (report_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	if (*tlst)
 		tsk->next = *tlst;
 	else if (last && !(*tlst))
@@ -63,7 +63,7 @@ int	thpool_task_push_front(t_task **tlst, t_task **last, t_task *tsk)
 int	thpool_task_push_back(t_task **tlst, t_task **last, t_task *tsk)
 {
 	if (!tlst || !last || !tsk)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
+		return (report_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	tsk->next = NULL;
 	if (!(*tlst))
 		*tlst = tsk;
@@ -78,7 +78,7 @@ int	thpool_task_pop_front(t_task **tlst, t_task **last, t_task **ret)
 	t_task	*t;
 
 	if (!tlst || !*tlst || !ret)
-		return (repport_thpool_task_op_failed(TPE_QUEUE_INPTS));
+		return (report_thpool_task_op_failed(TPE_QUEUE_INPTS));
 	t = *tlst;
 	*tlst = t->next;
 	*ret = t;

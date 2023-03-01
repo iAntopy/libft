@@ -6,13 +6,13 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:02:01 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/10 23:00:45 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:55:22 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "thread_pool.h"
 
-int	repport_thpool_init_failed(int code, int ws)
+int	report_thpool_init_failed(int code, int ws)
 {
 	if (code == TPE_INIT_INPUTS)
 		ft_eprintf("\t[-> thpool error : missing input args \
@@ -30,7 +30,7 @@ int	repport_thpool_init_failed(int code, int ws)
 	return (-1);
 }
 
-int	repport_thpool_submit_failed(pthread_mutex_t *lock, int code)
+int	report_thpool_submit_failed(pthread_mutex_t *lock, int code)
 {
 	pthread_mutex_lock(lock);
 	if (code == TPE_SBMT_INPTS)
@@ -41,14 +41,14 @@ int	repport_thpool_submit_failed(pthread_mutex_t *lock, int code)
 	return (-1);
 }
 
-int	repport_thpool_task_op_failed(int code)
+int	report_thpool_task_op_failed(int code)
 {
 	if (code == TPE_QUEUE_INPTS)
 		ft_eprintf("\t[-> thread pool error : queue operation missing inputs <-]\n");
 	return (-1);
 }
 
-void	*repport_thpool_thread_failed(pthread_mutex_t *lock, int code, int id)
+void	*report_thpool_thread_failed(pthread_mutex_t *lock, int code, int id)
 {
 	pthread_mutex_lock(lock);
 	if (code == TPE_THREAD_NO_TASK)

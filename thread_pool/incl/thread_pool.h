@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:27:59 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/10 23:00:55 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:54:50 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ enum	e_err_codes
 	TPE_THREAD_NO_FUNC
 };
 
-typedef int (* t_task_func)(void *, void *);
-
-typedef struct	s_task
+typedef int			(*t_task_func)(void *, void *);
+//typedef int						(*t_bltin)(t_job *job, t_cmd *cmd);
+typedef struct s_task
 {
 	size_t			ticket_nb;
 	pthread_t		processing_thread;
@@ -56,7 +56,15 @@ typedef struct	s_task
 	struct s_task	*next;
 }	t_task;
 
-typedef struct	s_thread_pool
+// t_thpool special variables:
+// 	- tesk_sem : Counts up/down when a task is posted/taken.
+//	- task_pool : Pool of empty pre-malloced t_task elems linked at 
+//		thpool_init to accelerate task submissions.
+//	- failed_task : list of tasks that ended up failing
+//		(which exit_code != EXIT_SUCCESS)
+//
+
+typedef struct s_thread_pool
 {
 	char			is_running;
 	int				nb_workers;
@@ -121,9 +129,9 @@ void	thpool_print_failed_tasks(t_thpool *tp);
 void	thpool_print_pre_closure_status(t_thpool *tp);
 
 /// ERROR HANDLING ///////
-int		repport_thpool_init_failed(int code, int ws);
-int		repport_thpool_submit_failed(pthread_mutex_t *lock, int code);
-int		repport_thpool_task_op_failed(int code);
-void	*repport_thpool_thread_failed(pthread_mutex_t *lock, int code, int id);
+int		report_thpool_init_failed(int code, int ws);
+int		report_thpool_submit_failed(pthread_mutex_t *lock, int code);
+int		report_thpool_task_op_failed(int code);
+void	*report_thpool_thread_failed(pthread_mutex_t *lock, int code, int id);
 
 #endif

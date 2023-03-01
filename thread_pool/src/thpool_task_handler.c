@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 23:52:17 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/10 23:29:32 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:56:04 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	*__task_handler(void *thpool_p)
 
 	tp = (t_thpool *)thpool_p;
 	if (!tp)
-		return (repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_INPTS, -1));
+		return (report_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_INPTS, -1));
 	id = tp->nb_available;
 	tp->nb_workers++;
 	while (tp_ctrler(tp, 1, 0, 0) && sem_wait(tp->task_sem) == 0 && !tp->_quit_requested[id])
@@ -79,7 +79,7 @@ void	*__task_handler(void *thpool_p)
 		tsk = gather_new_task(tp, id);
 		if (!tsk)
 		{
-			repport_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_NO_TASK, id);
+			report_thpool_thread_failed(&tp->print_mutex, TPE_THREAD_NO_TASK, id);
 			tp->_isbroken_threads[id] = 1;
 			ft_free_p((void **)&tsk);
 			break ;

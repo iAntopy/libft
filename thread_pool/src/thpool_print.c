@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 16:11:48 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/10 22:25:59 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:57:45 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	thpool_print_failed_tasks(t_thpool *tp)
 	if (!tp)
 		return ;
 	if (!tp->failed_tasks)
-		ft_printf("No failed task to repport.\n");
+		ft_printf("No failed task to report.\n");
 	tsk = tp->failed_tasks;
 	while (tsk)
 	{
@@ -92,18 +92,23 @@ static void	generic_print_status(t_thpool *tp)
 {
 	static const char	*bools[2] = {"false", "true"};
 
-	ft_printf("o-	o- pool is running :\t\t%s\n", bools[(int)tp->is_running]);
+	ft_printf("o-	o- pool is running :\t\t%s\n",
+		bools[(int)tp->is_running]);
 	ft_printf("o-	o- total workers :\t\t%d\n", tp->nb_workers);
 	ft_printf("o-	o- available workers :\t\t%d\n", tp->nb_available);
-	ft_printf("o-	o- currently working :\t\t%d\n", tp->nb_workers - tp->nb_finished - tp->nb_available);
+	ft_printf("o-	o- currently working :\t\t%d\n",
+		tp->nb_workers - tp->nb_finished - tp->nb_available);
 	ft_printf("o-	o- finished workers :\t\t%d\n", tp->nb_finished);
 	ft_printf("o-	o- quit requests arr :\t\t");
 	thpool_print_bool_array(tp->_quit_requested, tp->nb_workers);
 	ft_printf("o-	o- is broken arr :\t\t");
 	thpool_print_bool_array(tp->_isbroken_threads, tp->nb_workers);
-	ft_printf("o-	o- tasks in queue :\t\t%d\n", thpool_task_queue_len(tp->task_queue));
-	ft_printf("o-	o- total failed tasks :\t\t%z\n", tp->failed_tasks_counter);
-	ft_printf("o-	o- total completed tasks :\t%z\n", tp->completed_tasks_counter);
+	ft_printf("o-	o- tasks in queue :\t\t%d\n",
+		thpool_task_queue_len(tp->task_queue));
+	ft_printf("o-	o- total failed tasks :\t\t%z\n",
+		tp->failed_tasks_counter);
+	ft_printf("o-	o- total completed tasks :\t%z\n",
+		tp->completed_tasks_counter);
 	ft_printf("o-	o- total tickets serviced :\t%z\n", tp->ticket_counter);
 }
 
