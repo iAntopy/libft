@@ -6,7 +6,7 @@
 /*   By: iamongeo <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 18:10:46 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/08/10 20:15:44 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:26:05 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	ft_put_delta_t(ssize_t d, char *note)
 	secs = d / 1000000;
 	ms = (d % 1000000) / 1000;
 	us = (d % 1000);
-	ft_printf("%ld sec, %ld ms and %ld usec elapsed : %s\n", secs, ms, us, note);
+	printf("%zd sec, %zd ms and %zd usec elapsed : %s\n", secs, ms, us, note);
 }
 
 ssize_t	ft_deltatime_usec_note(char *note)
