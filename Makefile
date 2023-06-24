@@ -1,10 +1,10 @@
 FUNC_NAMES_M =	issign isspace isalpha isdigit isalnum isascii			\
-		isprint strlen memset bzero memcpy memmove strlcpy		\
+		isprint strlen memset bzero memcpy memmove strlcpy strncpy		\
 		strlcat isupper islower toupper tolower				\
 		strchr strrchr strchr_set strrchr_set				\
 		strcmp strncmp memchr memcmp memclear strnstr			\
 		atoi atol atoi_base itoa 					\
-		calloc strlcat substr strjoin strtrim strdup			\
+		calloc strlcat substr strjoin strtrim strdup strndup	\
 		split split_set split_space					\
 		strmapi striteri						\
 		putchar_fd putstr_fd putendl_fd putnbr_fd putnbr_buff	\

@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 04:23:34 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/12/06 20:21:27 by iamongeo         ###   ########.fr       */
+/*   Updated: 2022/12/11 21:25:46 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,6 @@ void	strtab_swap(char **tab, int index1, int index2)
 	tab[index2] = temp;
 }
 
-char	**strtab_copy(char **tab)
-{
-	int		len;
-	char	**cp;
-	int		i;
-
-	if (!tab || !(*tab))
-		return (NULL);
-	len = strtab_len(tab);
-	if (!ft_malloc_p(sizeof(char *) * (len + 1), (void**)&cp))
-		return (NULL);
-	i = -1;
-	while (tab[++i])
-		cp[i] = ft_strdup(tab[i]);
-	cp[len] = NULL;
-	return (cp);
-}
-
 void	strtab_print(char **tab)
 {
 	int	i;
@@ -87,4 +69,19 @@ void	strtab_print(char **tab)
 		tab++;
 	}
 	ft_printf("@---------------@@@--------------@\n");
+}
+
+char	**strtab_copy(char **tab)
+{
+	char	**ntab;
+	char	**n;
+
+	if (!tab || !(*tab)
+		|| !ft_malloc_p(sizeof(char *) * (strtab_len(tab) + 1),	(void **)&ntab))
+		return (NULL);
+	n = ntab;
+	while (*tab)
+		*(n++) = ft_strdup(*(tab++));
+	*n = NULL;
+	return (ntab);
 }
