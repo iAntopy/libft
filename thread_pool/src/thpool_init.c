@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:33:28 by iamongeo          #+#    #+#             */
-/*   Updated: 2022/11/10 22:57:07 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:55:33 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	clear_failed_init(t_thpool *tp, int err_code)
 		pthread_join(tp->_threads[i], tp->_th_exit_codes + i);
 	if (tp->task_sem
 		&& (sem_close(tp->task_sem) || sem_unlink(tp->sem_name)))
-		repport_thpool_init_failed(TPE_INIT_SEM, tp->nb_workers);
+		report_thpool_init_failed(TPE_INIT_SEM, tp->nb_workers);
 	if (tp->mutex_isinit[0])
 		pthread_mutex_destroy(&tp->queue_mutex);
 	if (tp->mutex_isinit[1])
@@ -44,7 +44,7 @@ static int	clear_failed_init(t_thpool *tp, int err_code)
 		pthread_mutex_destroy(&tp->failed_mutex);
 	thpool_tasks_clear(&tp->task_queue, &tp->last_task);
 	thpool_tasks_clear(&tp->task_pool, NULL);
-	return (repport_thpool_init_failed(err_code, tp->nb_workers));
+	return (report_thpool_init_failed(err_code, tp->nb_workers));
 }
 
 static int	confirm_all_mutexes_and_sem_initialized(t_thpool *tp)
