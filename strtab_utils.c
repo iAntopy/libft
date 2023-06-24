@@ -6,7 +6,7 @@
 /*   By: iamongeo <iamongeo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 04:23:34 by iamongeo          #+#    #+#             */
-/*   Updated: 2023/06/23 20:16:36 by iamongeo         ###   ########.fr       */
+/*   Updated: 2023/06/23 20:20:05 by iamongeo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	**strtab_copy(char **tab)
 	char	**n;
 
 	if (!tab || !(*tab)
-		|| !ft_malloc_p(sizeof(char *) * (strtab_len(tab) + 1),	(void **)&ntab))
+		|| !ft_malloc_p(sizeof(char *) * (strtab_len(tab) + 1), (void **)&ntab))
 		return (NULL);
 	n = ntab;
 	while (*tab)
