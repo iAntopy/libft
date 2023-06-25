@@ -5,7 +5,7 @@ FUNC_NAMES_M =	issign isspace isalpha isdigit isalnum isascii			\
 		strcmp strncmp memchr memcmp memclear strnstr			\
 		atoi atol atoi_base itoa 					\
 		calloc strlcat substr strjoin strtrim strdup strndup	\
-		split split_set split_space					\
+		split split_set split_space split_dup				\
 		strmapi striteri						\
 		putchar_fd putstr_fd putendl_fd putnbr_fd putnbr_buff	\
 		pow abs sqrt							\
